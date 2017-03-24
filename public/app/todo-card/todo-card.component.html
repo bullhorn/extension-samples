@@ -1,1 +1,7 @@
-TODO: TODO CARD
+<novo-list direction="vertical">
+    <novo-list-item *ngFor="let item of checklist">
+        <item-content>
+            <novo-checkbox [(ngModel)]="item.done" [label]="item.title"></novo-checkbox>
+        </item-content>
+    </novo-list-item>
+</novo-list>

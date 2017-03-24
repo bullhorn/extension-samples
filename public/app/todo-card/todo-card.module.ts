@@ -1,9 +1,13 @@
 // NG2
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+//Vendor
+import { NovoElementsModule, NovoElementProviders } from 'novo-elements';
 // APP
 import { TodoCardComponent } from './todo-card.component';
+import { TodoCardService } from './todo-card.service';
 
 export const routes: Routes = [
   { path: '', component: TodoCardComponent, pathMatch: 'full' }
@@ -13,10 +17,19 @@ export const routes: Routes = [
   imports: [
     // NG2
     CommonModule,
-    RouterModule.forChild(routes)
+    FormsModule,
+    RouterModule.forChild(routes),
+
+    //Vendor
+    NovoElementsModule,
+    NovoElementProviders.forRoot()
   ],
   declarations: [
     TodoCardComponent
+  ],
+  providers: [
+    TodoCardService
   ]
 })
-export class TodoCardModule { }
+export class TodoCardModule {
+ }

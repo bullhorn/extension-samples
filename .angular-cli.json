@@ -20,6 +20,12 @@
     "styles": [
       "styles.scss"
     ],
+    "stylePreprocessorOptions": {
+      "includePaths": [
+        "../node_modules/hint.css/src",
+        "../node-modules/novo-elements"
+      ]
+    },
     "scripts": [],
     "environmentSource": "environments/environment.ts",
     "environments": {

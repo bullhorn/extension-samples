@@ -15,7 +15,7 @@ app.get('*', (req, res, next) => {
   // Redirect if no session!
   next();
 }, (req, res) => {
-  res.render('novo.html', {
+  res.render('index.html', {
     settings: {},
     entitlements: {},
     ulUrl: '',
