@@ -1,7 +1,7 @@
 // NG2
 import { Component, OnInit } from '@angular/core';
 //Vendor
-import { TextBoxControl  } from 'novo-elements';
+import { TextBoxControl, FormUtils } from 'novo-elements';
 import { TodoCardService } from './todo-card.service';
 
 @Component({
@@ -11,10 +11,26 @@ import { TodoCardService } from './todo-card.service';
 })
 export class TodoCardComponent implements OnInit {
   checklist: Array<any> = [];
-  constructor(private service: TodoCardService) { }
+  todoControl: TextBoxControl;
+  newTodo: String = '';
+  todoForm: any;
+
+  constructor(private service: TodoCardService, private formUtils: FormUtils) { }
 
   ngOnInit() {
     this.checklist = this.service.todos;
 
+    this.todoControl = new TextBoxControl({
+      key: 'newTodo',
+      hidden: false,
+      label: 'What do you need to do?'
+    });
+
+    this.todoForm = this.formUtils.toFormGroup([this.todoControl]);
+  }
+
+  addTodo(form) {
+    this.service.addTodo(form.value['newTodo']);
+    form.controls['newTodo'].setValue('');
   }
 }
