@@ -12,7 +12,7 @@
  * Edge >= 13 on the desktop, and iOS 10 and Chrome on mobile.
  *
  * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
- */
+ */ 
 
 /***************************************************************************************************
  * BROWSER POLYFILLS

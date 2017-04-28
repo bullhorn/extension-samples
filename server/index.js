@@ -11,17 +11,17 @@ app.engine('html', require('ejs').renderFile);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res, next) => {
-  // Check for session!
-  // Redirect if no session!
-  next();
+    // Check for session!
+    // Redirect if no session!
+    next();
 }, (req, res) => {
-  res.render('index.html', {
-    settings: {},
-    entitlements: {},
-    ulUrl: '',
-    ulLoginPage: '',
-    environment: 'development'
-  });
+    res.render('index.html', {
+        settings: {},
+        entitlements: {},
+        ulUrl: '',
+        ulLoginPage: '',
+        environment: 'development'
+    });
 });
 
 const port = process.env.PORT || '3000';

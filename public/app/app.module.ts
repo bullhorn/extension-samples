@@ -10,22 +10,22 @@ import { SharedModule } from './shared/shared.module';
 import { NovoElementsModule } from 'novo-elements';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    // NG2
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    // APP
-    AppRoutingModule,
-    SharedModule,
-    NovoElementsModule
-  ],
-  providers: [],
-  bootstrap: [
-    AppComponent
-  ]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        // NG2
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        // APP
+        AppRoutingModule,
+        SharedModule,
+        NovoElementsModule
+    ],
+    providers: [],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule { }
