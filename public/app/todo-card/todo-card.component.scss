@@ -1,0 +1,51 @@
+todo-card {
+    novo-list {
+        padding: 2em;
+
+        novo-list-item {
+            border-bottom: 0;
+        }
+
+        .novo-form-row {
+            label {
+                max-width: 150px;
+                margin-left: 21px;
+                margin-right: 0;
+            }
+            novo-control {
+                width: 77vw;
+            }
+        }
+
+        .checked {
+            span {
+                text-decoration: line-through;
+                font-style: italic;
+                color: #868686;
+            }
+        }
+
+        novo-checkbox {
+
+            [class*="-group"] > label > i {
+                &.bhi-check {
+                    background: #8CC152;
+                    width: 2em;
+                    padding: .4em 0 0 .5em;
+                    height: 2em;
+                }
+
+                &.bhi-circle-o {
+                    //todo - icons aren't aligned in same spot
+                    font-size: 1.75em;
+                }
+            }
+            span {
+                margin-left: 7px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #D2D2D2;
+                width: 70vw;
+            }
+        }
+    }
+}
