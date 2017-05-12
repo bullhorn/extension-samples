@@ -8,7 +8,7 @@ export class TodoCardService {
     todos: Array<ToDo> = [];
     constructor() {
         this.todos = [{
-            title: 'Stuff that you need to do',
+            title: 'Call Dave about upcoming interview',
             done: false
         }];
         this.save();

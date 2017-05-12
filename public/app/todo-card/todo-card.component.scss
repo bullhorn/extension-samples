@@ -7,6 +7,9 @@ todo-card {
         }
 
         .novo-form-row {
+            max-width: 550px;
+            //need to do this without using important
+            width: 80vw !important;
             label {
                 max-width: 150px;
                 margin-left: 21px;
@@ -41,6 +44,7 @@ todo-card {
                 }
             }
             span {
+                max-width: 500px;
                 margin-left: 7px;
                 padding-bottom: 5px;
                 border-bottom: 1px solid #D2D2D2;
