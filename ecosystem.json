@@ -1,0 +1,6 @@
+{
+  "apps": [{
+    "name": "bullhorn-starter",
+    "script": "index.js"
+  }]
+}
