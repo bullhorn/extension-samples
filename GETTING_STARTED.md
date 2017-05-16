@@ -1,5 +1,5 @@
 # Custom Card Starter
-The goal of this repo is to provide a starting point to creating your own custom cards and using those cards within Bullhorn. The custom-card-starter uses [Angular2](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements). For deployment, the custom-card-starter utilizes [Kubernetes](https://kubernetes.io/).
+The goal of this repo is to provide a starting point to creating your own Custom Cards, Tabs or Pages and using those apps within Bullhorn. The custom-card-starter uses [Angular2](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements). For deployment, the custom-card-starter utilizes [Kubernetes](https://kubernetes.io/) and [Docker](https://docs.docker.com/get-started/).
 
 ### Prerequisites
  * [NodeJS](https://nodejs.org/en/) - at least v6.9.1
@@ -46,9 +46,7 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 The purpose of this document is to outline the steps necessary to deploy your own applications, modeled after the custom-card-starter, within Google Cloud. The end result will provide you with an environment with basic fault tolerance utilizing Google Container Service and Kubernetes for orchestration. Although your custom card applications can be hosted within any cloud or self hosted solution, this document utilizes functionality within the Google Cloud service for rapid deployment.
 
-The architecture will consist of a set of vm’s containing node.js containers, a redis container for storing login session information, and a MongoDB cluster to store tournament data.
-
-![image alt text](doc_files/image_0.png)
+The architecture will consist of a set of vm’s containing node.js containers.
 
 ### Prerequisites
 
@@ -62,11 +60,7 @@ Please download and install the latest GCloud SDK from: [https://cloud.google.co
 
 Once installed run gcloud components install kubectl from a terminal/command prompt in order to install the latest kubectl.
 
-* A MongoDB cluster running in Google Cloud. Alternatively you may use a managed MongoDB service provider, we currently reccomend Mlab [https://mlab.com/](https://mlab.com/) as they offer managed clusters within Google Cloud.
-
 * The provided gcloud yamls within the source code for creating the environment.
-
-* Modifications to the source code to reference your MongoDB instances and SSL certificates.
 
 * Your application compiled within nodejs on a docker container.
 
@@ -97,25 +91,9 @@ You can obtain your connection string by going to **Container Engine > Container
 gcloud container clusters get-credentials mysalesduel \
     --zone us-east1-b --project mysalesduel
 
-### Create the Load Balancer
-
-Run the following command to create your load balancer and container mappings.
-
-kubectl create -f ./gcloud/web.yaml
-
-Once completed you should see your load balancer listed under **Networking > Load Balancing**.
-
-![image alt text](doc_files/image_3.png)
-
-### Deploy Redis
-
-Run the following command to create your redis container.
-
-kubectl create -f ./gcloud/redis.master.yaml
-
 ### Building a Custom Card Container
 
-Included within the sourcecode is a base Node.JS dockerfile to get you started. You may build the container by executing the following command within a directory containing your sourcecode. *Remember to make modifications to server/index.js to include your ssl certificates and replace edit the DNS names of your MongoDB instances within server/config/production.json! Additionally the docker file will need to be modified to clone your repository or you may utilize a local npm repository if available.*
+Included within the sourcecode is a base Node.JS dockerfile to get you started. You may build the container by executing the following command within a directory containing your sourcecode.
 
 docker build -t {{your-app}}:tag .
 
