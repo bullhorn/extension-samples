@@ -2,6 +2,9 @@
 
 complex-todo-card {
     padding: 1em;
+    display: flex;
+    flex-direction: column;
+    background: white;
     novo-nav[theme="white"] {
         background: none;
         border-bottom: 1px solid #eee;
