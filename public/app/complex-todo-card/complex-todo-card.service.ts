@@ -13,11 +13,12 @@ interface ComplexToDo {
 @Injectable()
 export class ComplexTodoCardService {
     todos: Array<ComplexToDo> = [];
-    bridge: AppBridge = new AppBridge('TaskList');
+    bridge: AppBridge;
     onNewTask: EventEmitter<{ event: any }> = new EventEmitter<{ event: any }>();
 
     constructor() {
-        this.bridge.register();
+        // this.bridge = new AppBridge('TaskList');
+        // this.bridge.register();
         this.todos = MOCK_TODOS;
         this.save();
     }
@@ -32,16 +33,17 @@ export class ComplexTodoCardService {
             const fields = ['id', 'subject', 'type', 'isCompleted', 'dateBegin'].join();
             const query = `isDeleted:0 AND isCompleted:${isCompleted}`;
             console.log(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`);
-            this.bridge
-                .httpGET(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`)
-                .then( response => {
-                    console.log('response', response);
-                    resolve(response);
-                })
-                .catch(err => {
-                    resolve(this.todos);
-                    console.error('error', err);
-                });
+            // this.bridge
+            //     .httpGET(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`)
+            //     .then( response => {
+            //         console.log('response', response);
+            //         resolve(response);
+            //     })
+            //     .catch(err => {
+            //         resolve(this.todos);
+            //         console.error('error', err);
+            //     });
+            resolve(this.todos);
         });
     }
     addTodo(todoTitle) {
