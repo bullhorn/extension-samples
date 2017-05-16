@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { PagedArrayCollection, AppBridge } from 'novo-elements';
+
 interface ComplexToDo {
     title: string;
     isCompleted: boolean;
@@ -8,7 +10,9 @@ interface ComplexToDo {
 @Injectable()
 export class ComplexTodoCardService {
     todos: Array<ComplexToDo> = [];
+    bridge: AppBridge = new AppBridge('TaskList');
     constructor() {
+        this.bridge.register();
         this.todos = [{
             title: 'Call Dave about upcoming interview',
             isCompleted: false,
@@ -23,8 +27,21 @@ export class ComplexTodoCardService {
         this.save();
     }
     getTasks(type: string): any {
+        const isCompleted = type === 'open' ? 0 : 1;
         return new Promise(resolve => {
-            resolve(this.todos);
+            const fields = ['id', 'subject', 'type', 'isCompleted', 'dateBegin'].join();
+            const query = `isDeleted:0 AND isCompleted:${isCompleted}`;
+            console.log(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`);
+            this.bridge
+                .httpGET(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`)
+                .then( response => {
+                    console.log('response', response);
+                    resolve(response);
+                })
+                .catch(err => {
+                    resolve(this.todos);
+                    console.error('error', err);
+                });
         });
     }
     addTodo(todoTitle) {
