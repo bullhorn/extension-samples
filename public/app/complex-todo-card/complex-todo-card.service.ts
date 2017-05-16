@@ -15,7 +15,7 @@ interface ComplexToDo {
 @Injectable()
 export class ComplexTodoCardService {
     todos: Array<ComplexToDo> = [];
-    bridge: AppBridge = new AppBridge('TaskList');
+    bridge: AppBridge;
     onNewTask: EventEmitter<{ event: any }> = new EventEmitter<{ event: any }>();
 
     constructor() {
