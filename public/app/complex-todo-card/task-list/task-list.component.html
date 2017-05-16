@@ -10,9 +10,9 @@
                 <novo-checkbox [(ngModel)]="item.isCompleted" [label]="item.subject" [layoutOptions]="layoutOptions"></novo-checkbox>                 
             </item-title>
              <item-header-end>
-                    <span>
+                    <span class="{{item.dueType}}">
                         <i class="bhi-appointment"></i>
-                        {{item.dateBegin | date: 'shortTime'}}
+                        {{ item.dueText }}
                     </span>
                 </item-header-end>
         </item-header>

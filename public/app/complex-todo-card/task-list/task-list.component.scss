@@ -6,42 +6,55 @@ task-list {
             border-bottom: 0;
             padding-left: 5px;
             padding-bottom: 0;
-            item-header item-title {
+            item-header {
                 margin-bottom: 1em;
-                novo-checkbox .check-box-group { 
-                    label {
-                        align-items: center;
-                        span {
-                            border-bottom: none;
-                            max-width: 500px;
-                            margin-left: 5px;
-                            padding-top: 2px;
-                            color: #4A89DC;
-                            font-weight: 600;
-                        }
-                        i {
-                            &.bhi-check {
-                                background: #8CC152;
-                                width: 2em;
-                                padding: .4em 0 0 .5em;
-                                height: 2em;
+                item-title {
+                    novo-checkbox .check-box-group { 
+                        label {
+                            align-items: center;
+                            span {
+                                border-bottom: none;
+                                max-width: 500px;
+                                margin-left: 5px;
+                                padding-top: 2px;
+                                color: #4A89DC;
+                                font-weight: 600;
                             }
+                            i {
+                                &.bhi-check {
+                                    background: #8CC152;
+                                    width: 2em;
+                                    padding: .4em 0 0 .5em;
+                                    height: 2em;
+                                }
 
-                            &.bhi-circle-o {
-                                //todo - icons aren't aligned in same spot
-                                font-size: 1.75em;
+                                &.bhi-circle-o {
+                                    //todo - icons aren't aligned in same spot
+                                    font-size: 1.75em;
+                                }
                             }
                         }
-                    }
-                    .checked {
-                        span {
-                            text-decoration: line-through;
-                            font-style: italic;
-                            color: #868686;
+                        &.checked {
+                            span {
+                                text-decoration: line-through;
+                                font-style: italic;
+                            }
                         }
                     }
                 }
+                item-header-end span {
+                    &.past {
+                        color: #DA4453;
+                    }
+                    &.future {
+                        color: #8CC152;
+                    }
+                    &.soon {
+                        color: #F6B042;
+                    }
+                }
             }
+            
             item-content {
                 margin-left: 2.8em;
                 .field {

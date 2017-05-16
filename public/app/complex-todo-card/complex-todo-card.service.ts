@@ -9,6 +9,8 @@ interface ComplexToDo {
     isCompleted: boolean;
     dateBegin: any;
     type: string;
+    dueText?: string;
+    dueType?: string;
 };
 @Injectable()
 export class ComplexTodoCardService {
@@ -43,17 +45,59 @@ export class ComplexTodoCardService {
             //         resolve(this.todos);
             //         console.error('error', err);
             //     });
+            this.todos = this.todos.map(item => {
+                const now = new Date();
+                const diff = this.getTimeDifference(item.dateBegin);
+                if (item.dateBegin < now) {
+                    item.dueText = `Due ${diff.number} ${diff.type} ago`;
+                    item.dueType = 'past';
+                } else {
+                    item.dueText = `Due in ${diff.number} ${diff.type}`;
+                    item.dueType = 'future';
+                    if (diff.type.includes('hour')) {
+                        item.dueType = 'soon';
+                    }
+                }
+                return item;
+            });
             resolve(this.todos);
         });
     }
-    addTodo(todoTitle) {
+    getTimeDifference(dateValue: number): any {
+        const diff = Math.abs(dateValue - new Date().getTime());
+        let result: any = {};
+        if (Math.ceil(diff / 3600) < 24 ) {
+            result.number = Math.ceil(diff / 3600);
+            if (result.number === 1) {
+                result.type = 'hour';
+            } else {
+                result.type = 'hours';
+            }
+        } else if (diff / (24 * 3600) < 30 ) {
+            result.number = Math.floor(diff / (24 * 3600));
+            if (result.number === 1) {
+                result.type = 'day';
+            } else {
+                result.type = 'days';
+            }
+        } else {
+            result.number = Math.floor(diff / (24 * 3600 * 30));
+            if (result.number === 1) {
+                result.type = 'month';
+            } else {
+                result.type = 'months';
+            }
+        }
+        return result;
+    }
+    addTodo(todoTitle): void {
         // this.todos.push({
         //     title: todoTitle,
         //     done: false
         // });
         // this.save();
     }
-    save() {
+    save(): void {
         localStorage.setItem('complex-todos', JSON.stringify(this.todos));
     }
 }
