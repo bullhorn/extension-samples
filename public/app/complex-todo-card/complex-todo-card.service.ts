@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 // Vendor
-import { AppBridge } from 'novo-elements';
+import { PagedArrayCollection, AppBridge } from 'novo-elements';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 // APP
 import { MOCK_TODOS } from './mock-todo';
@@ -15,7 +15,7 @@ interface ComplexToDo {
 @Injectable()
 export class ComplexTodoCardService {
     todos: Array<ComplexToDo> = [];
-    bridge: AppBridge;
+    bridge: AppBridge = new AppBridge('TaskList');
     onNewTask: EventEmitter<{ event: any }> = new EventEmitter<{ event: any }>();
 
     constructor() {

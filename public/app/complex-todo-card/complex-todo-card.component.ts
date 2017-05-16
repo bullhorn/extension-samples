@@ -11,6 +11,7 @@ import { ComplexTodoCardService } from './complex-todo-card.service';
 })
 
 export class ComplexTodoCardComponent implements OnInit {
+
     checklist: Array<any> = [];
     todoControl: TextBoxControl;
     newTodo: String = '';
