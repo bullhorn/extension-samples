@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { PagedArrayCollection, AppBridge } from 'novo-elements';
+// APP
+import { MOCK_TODOS } from './mock-todo';
 
 interface ComplexToDo {
-    title: string;
+    subject: string;
     isCompleted: boolean;
     dateBegin: any;
     type: string;
@@ -13,17 +15,7 @@ export class ComplexTodoCardService {
     bridge: AppBridge = new AppBridge('TaskList');
     constructor() {
         this.bridge.register();
-        this.todos = [{
-            title: 'Call Dave about upcoming interview',
-            isCompleted: false,
-            dateBegin: new Date (),
-            type: 'Email'
-        }, {
-            title: 'Call Jane about upcoming interview',
-            isCompleted: false,
-            dateBegin: new Date (),
-            type: 'Email'
-        }];
+        this.todos = MOCK_TODOS;
         this.save();
     }
     getTasks(type: string): any {

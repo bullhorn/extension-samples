@@ -2,12 +2,11 @@
     <novo-list-item *ngFor="let item of checklist">
         <item-header>
             <item-title>
-                {{item.title}}
+                {{item.subject}}
             </item-title>
         </item-header>
         <item-content>
-            <!--<novo-checkbox [(ngModel)]="item.done" [label]="item.title" [layoutOptions]="layoutOptions"></novo-checkbox>-->
-            <novo-checkbox [(ngModel)]="item.done" [label]="item.title"></novo-checkbox>
+            <novo-checkbox [(ngModel)]="item.isCompleted" [label]="item.subject" [layoutOptions]="layoutOptions"></novo-checkbox>
         </item-content>
     </novo-list-item>
 </novo-list>

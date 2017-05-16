@@ -20,6 +20,7 @@ export class TaskListComponent implements OnInit {
     constructor(private formUtils: FormUtils,  private route: ActivatedRoute) { }
 
     ngOnInit() {
+        this.layoutOptions = { iconStyle: 'circle' };
         this.route.data.subscribe((data: { list: any }) => {
             this.checklist = data.list;
         });
