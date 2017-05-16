@@ -1,12 +1,14 @@
 <header>
     <novo-nav theme="white" router>
-        <novo-tab-link [routerLink]="['list', 'open']">
-            <span>Open ({{totalOpen}})</span>
-        </novo-tab-link>
-        <novo-tab-link [routerLink]="['list', 'completed']">
-            <span>Completed ({{totalCompleted}})</span>
-        </novo-tab-link>
-        <button theme="dialogue" icon="add-thin" class="add-button" (click)="openNewTask()">Add a task</button>
+        <div class="link">
+            <novo-tab-link [routerLink]="['list', 'open']">
+                <span>Open ({{totalOpen}})</span>
+            </novo-tab-link>
+            <novo-tab-link [routerLink]="['list', 'completed']">
+                <span>Completed ({{totalCompleted}})</span>
+            </novo-tab-link>
+        </div>
+        <button theme="dialogue" icon="add" class="add-button" (click)="openNewTask()">Add a task</button>
     </novo-nav>
 </header>
 <router-outlet></router-outlet>

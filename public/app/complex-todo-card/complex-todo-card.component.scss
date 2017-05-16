@@ -9,13 +9,12 @@ complex-todo-card {
         background: none;
         border-bottom: 1px solid #eee;
         padding-left: 2.5em;
+        .link {
+            display: flex;
+            flex: 5 0 0;
+        }
     }
     button.add-button {
-      :hover {
-        background: none;
-      }
-      div.flex-wrapper {
-        position: absolute;
-      }
+        padding: 0.25em 0.75em;
     }
 }
