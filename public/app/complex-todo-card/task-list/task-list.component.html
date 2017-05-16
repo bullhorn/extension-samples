@@ -7,15 +7,22 @@
     <novo-list-item *ngFor="let item of checklist">
         <item-header>
             <item-title>
-                <novo-checkbox [(ngModel)]="item.isCompleted" label="" [layoutOptions]="layoutOptions"></novo-checkbox>                 
-                {{item.subject}}
+                <novo-checkbox [(ngModel)]="item.isCompleted" [label]="item.subject" [layoutOptions]="layoutOptions"></novo-checkbox>                 
             </item-title>
+             <item-header-end>
+                    <span>
+                        <i class="bhi-appointment"></i>
+                        {{item.dateBegin | date: 'shortTime'}}
+                    </span>
+                </item-header-end>
         </item-header>
         <item-content>
-            <!--<novo-checkbox [(ngModel)]="item.isCompleted" [label]="item.subject" [layoutOptions]="layoutOptions"></novo-checkbox>-->
             <div class="field">
                 <div class="label">Due</div>
-                <div class="value">{{item.dateBegin}}</div>
+                <div class="value">
+                    <span class="date">{{item.dateBegin | date: 'shortDate'}}</span>
+                    <span class="time">{{item.dateBegin | date: 'shortTime'}}</span>
+                </div>
             </div>
             <div class="field">
                 <div class="label">Type</div>
