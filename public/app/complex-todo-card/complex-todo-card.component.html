@@ -1,0 +1,11 @@
+<header>
+    <novo-nav theme="white" router>
+        <novo-tab-link [routerLink]="['list', 'open']">
+            <span>Open</span>
+        </novo-tab-link>
+        <novo-tab-link [routerLink]="['list', 'completed']">
+            <span>Completed</span>
+        </novo-tab-link>
+    </novo-nav>
+</header>
+<router-outlet></router-outlet>

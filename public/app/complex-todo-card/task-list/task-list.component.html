@@ -1,10 +1,10 @@
 <novo-list direction="vertical">
-    <novo-form [form]="todoForm" (keyup.enter)="addTodo(todoForm)">
-        <div class="novo-form-row">
-            <novo-control [form]="todoForm" [control]="todoControl"></novo-control>
-        </div>
-    </novo-form>
     <novo-list-item *ngFor="let item of checklist">
+        <item-header>
+            <item-title>
+                {{item.title}}
+            </item-title>
+        </item-header>
         <item-content>
             <!--<novo-checkbox [(ngModel)]="item.done" [label]="item.title" [layoutOptions]="layoutOptions"></novo-checkbox>-->
             <novo-checkbox [(ngModel)]="item.done" [label]="item.title"></novo-checkbox>

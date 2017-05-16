@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-    { path: 'todo', loadChildren: './todo-card/todo-card.module#TodoCardModule' }
+    { path: 'todo', loadChildren: './todo-card/todo-card.module#TodoCardModule' },
+    { path: 'complex-todo', loadChildren: './complex-todo-card/complex-todo-card.module#ComplexTodoCardModule' }
 ];
 
 @NgModule({
