@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import { Injectable } from '@angular/core';
 import { PagedArrayCollection, AppBridge } from 'novo-elements';
 // APP
 import { MOCK_TODOS } from './mock-todo';
 
+=======
+import { Injectable, EventEmitter } from '@angular/core';
+>>>>>>> WIP wire up add task button and show input
 interface ComplexToDo {
     subject: string;
     isCompleted: boolean;
@@ -12,12 +16,21 @@ interface ComplexToDo {
 @Injectable()
 export class ComplexTodoCardService {
     todos: Array<ComplexToDo> = [];
+<<<<<<< HEAD
     bridge: AppBridge = new AppBridge('TaskList');
+=======
+    onNewTask: EventEmitter<{ event: any }> = new EventEmitter<{ event: any }>();
+>>>>>>> WIP wire up add task button and show input
     constructor() {
         this.bridge.register();
         this.todos = MOCK_TODOS;
         this.save();
     }
+
+    openNewTask() {
+      this.onNewTask.emit();
+    }
+
     getTasks(type: string): any {
         const isCompleted = type === 'open' ? 0 : 1;
         return new Promise(resolve => {
