@@ -1,12 +1,17 @@
 @import 'task-list/task-list.component';
 
 complex-todo-card {
-  button.add-button {
-    :hover {
-      background: none;
+    padding: 1em;
+    novo-nav {
+        background: none;
+        border-bottom: 1px solid #eee;
     }
-    div.flex-wrapper {
-      position: absolute;
-    }
+    button.add-button {
+      :hover {
+        background: none;
+      }
+      div.flex-wrapper {
+        position: absolute;
+      }
   }
 }
