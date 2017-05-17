@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 // Vendor
-import { NovoElementsModule, NovoElementProviders } from 'novo-elements';
+import { NovoElementsModule, NovoElementProviders, AppBridge } from 'novo-elements';
 // APP
 import { TodoCardComponent } from './todo-card.component';
 import { TodoCardService } from './todo-card.service';
@@ -12,6 +12,16 @@ import { TodoCardService } from './todo-card.service';
 export const routes: Routes = [
     { path: '', component: TodoCardComponent, pathMatch: 'full' }
 ];
+
+let bridge: AppBridge;
+export function appBridgeFactory(): AppBridge {
+    if (!bridge) {
+        bridge = new AppBridge('ComplexToDoCard');
+        bridge.register();
+        bridge.tracing = true;
+    }
+    return bridge;
+}
 
 @NgModule({
     imports: [
@@ -27,7 +37,11 @@ export const routes: Routes = [
         TodoCardComponent
     ],
     providers: [
-        TodoCardService
+        TodoCardService,
+        {
+            provide: AppBridge,
+            useFactory:  appBridgeFactory
+        }
     ]
 })
 export class TodoCardModule {

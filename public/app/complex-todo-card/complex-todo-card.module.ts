@@ -11,10 +11,6 @@ import { ComplexTodoCardService } from './complex-todo-card.service';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskListResolverService } from './task-list/task-list-resolver.service';
 
-const bridge: AppBridge = new AppBridge('ComplexToDoCard');
-bridge.register();
-bridge.tracing = true;
-
 export const routes: Routes = [
     {
         path: '',
@@ -29,6 +25,16 @@ export const routes: Routes = [
         ]
     }
 ];
+
+let bridge: AppBridge;
+export function appBridgeFactory(): AppBridge {
+    if (!bridge) {
+        bridge = new AppBridge('ComplexToDoCard');
+        bridge.register();
+        bridge.tracing = true;
+    }
+    return bridge;
+}
 
 @NgModule({
     imports: [
@@ -49,7 +55,7 @@ export const routes: Routes = [
         TaskListResolverService,
         {
             provide: AppBridge,
-            useValue: bridge
+            useFactory:  appBridgeFactory
         }
     ]
 })
