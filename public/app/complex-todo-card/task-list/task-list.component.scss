@@ -76,20 +76,25 @@ task-list {
                 }
             }
         }
-
-        .novo-form-row {
-            max-width: 550px;
-            //need to do this without using important
-            width: 80vw !important;
-            label {
-                max-width: 150px;
-                margin-left: 21px;
-                margin-right: 0;
+    }
+    novo-form .novo-form-row {
+        max-width: 550px;
+        label {
+            max-width: 150px;
+            margin-left: 21px;
+            margin-right: 0;
+        }
+        novo-control {
+            width: 77vw;
+        }
+        &.three-column {
+            display: flex;
+            novo-control .novo-control-container {
+                margin-top: 0;
             }
-            novo-control {
-                width: 77vw;
+            .form-buttons {
+                display: flex;
             }
         }
-
     }
 }

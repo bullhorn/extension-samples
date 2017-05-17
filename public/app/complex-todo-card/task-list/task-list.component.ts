@@ -2,8 +2,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // Vendor
-import { TextBoxControl, FormUtils } from 'novo-elements';
-//App
+import { TextBoxControl, SelectControl, DateTimeControl, FormUtils } from 'novo-elements';
+// App
 import { ComplexTodoCardService } from '../complex-todo-card.service';
 
 @Component({
@@ -13,7 +13,9 @@ import { ComplexTodoCardService } from '../complex-todo-card.service';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
     checklist: Array<any> = [];
-    todoControl: TextBoxControl;
+    subjectControl: TextBoxControl;
+    typeControl: SelectControl;
+    dueDateControl: DateTimeControl;
     newTodo: String = '';
     todoForm: any;
     layoutOptions: { iconStyle: string };
@@ -45,12 +47,24 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     initializeForm() {
-      this.todoControl = new TextBoxControl({
-        key: 'newTodo',
-        hidden: false,
-        label: "What's on your list?"
+      this.subjectControl = new TextBoxControl({
+          key: 'subject',
+          hidden: false,
+          placeholder: 'What\'s on your list?'
       });
-
-      this.todoForm = this.formUtils.toFormGroup([this.todoControl]);
+      this.typeControl = new SelectControl({
+          key: 'type',
+          options: [{
+            label: 'Email',
+            value: 'Email'
+          }, {
+            label: 'Call',
+            value: 'Call'
+          }]
+      });
+      this.dueDateControl = new DateTimeControl({
+        key: 'dateBegin',
+      });
+      this.todoForm = this.formUtils.toFormGroup([this.subjectControl, this.typeControl, this.dueDateControl]);
     }
 }

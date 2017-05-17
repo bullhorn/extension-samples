@@ -23,9 +23,9 @@ export class TodoCardComponent implements OnInit {
     this.layoutOptions = { iconStyle: 'circle' };
 
     this.todoControl = new TextBoxControl({
-      key: 'newTodo',
-      hidden: false,
-      label: "What's on your list?"
+        key: 'newTodo',
+        hidden: false,
+        placeholder: 'What\'s on your list?'
     });
 
     this.todoForm = this.formUtils.toFormGroup([this.todoControl]);
