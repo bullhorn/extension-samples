@@ -1,15 +1,18 @@
 <novo-form *ngIf="addingNewTask" [form]="todoForm" (keyup.enter)="addTodo(todoForm)" layout="vertical">
-      <div class="novo-form-row">
-          <novo-control [form]="todoForm" [control]="subjectControl"></novo-control>
-      </div>
-      <div class="novo-form-row three-column">
-          <novo-control [form]="todoForm" [control]="typeControl"></novo-control>
-          <novo-control [form]="todoForm" [control]="dueDateControl"></novo-control>
-          <div class="form-buttons">
+    <novo-checkbox [(ngModel)]="newTask.isCompleted" [layoutOptions]="layoutOptions"></novo-checkbox>                 
+    <div class="form-container">
+        <div class="novo-form-row">
+            <novo-control [form]="todoForm" [control]="subjectControl"></novo-control>
+        </div>
+        <div class="novo-form-row three-column">
+            <novo-control [form]="todoForm" [control]="typeControl"></novo-control>
+            <novo-control [form]="todoForm" [control]="dueDateControl"></novo-control>
+            <div class="form-buttons">
             <button theme="dialogue" color="light" (click)="cancel()">Cancel</button>
             <button theme="dialogue" icon="check" color="primary" [loading]="loading" (click)="save()">Save</button>
-          </div>
-      </div>
+            </div>
+        </div>
+    </div>
   </novo-form>
 <novo-list direction="vertical">
     <novo-list-item *ngFor="let item of checklist">

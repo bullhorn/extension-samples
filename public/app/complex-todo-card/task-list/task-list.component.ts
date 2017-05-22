@@ -21,6 +21,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     layoutOptions: { iconStyle: string };
     addingNewTask: boolean = false;
     taskSubscription: any;
+    newTask: any = {};
 
     constructor(private formUtils: FormUtils,  private route: ActivatedRoute, private service: ComplexTodoCardService) { }
 

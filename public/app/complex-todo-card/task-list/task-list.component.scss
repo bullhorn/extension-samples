@@ -77,23 +77,32 @@ task-list {
             }
         }
     }
-    novo-form .novo-form-row {
-        max-width: 550px;
-        label {
-            max-width: 150px;
-            margin-left: 21px;
-            margin-right: 0;
-        }
-        novo-control {
-            width: 77vw;
-        }
-        &.three-column {
-            display: flex;
-            novo-control .novo-control-container {
-                margin-top: 0;
+    novo-form[layout="vertical"] .novo-form-container form {
+        margin-top: 0.5em;
+        display: flex;
+        align-items: center;
+        .novo-form-row {
+            max-width: 550px;
+            label {
+                max-width: 150px;
+                margin-left: 21px;
+                margin-right: 0;
             }
-            .form-buttons {
+            novo-control {
+                width: 77vw;
+                .novo-control-container .novo-control-outer-container .novo-control-inner-container .field-message {
+                    display: none;
+                }
+            }
+            
+            &.three-column {
                 display: flex;
+                novo-control .novo-control-container {
+                    margin-top: 0;
+                }
+                .form-buttons {
+                    display: flex;
+                }
             }
         }
     }
