@@ -24,6 +24,13 @@ export class ComplexTodoCardService {
       this.onNewTask.emit();
     }
 
+    saveTodo(todo): any {
+        // should this be to: services/Task/create?
+        return this.bridge
+            .httpPUT(`/entity/Task`, JSON.stringify(todo)).then((res) => { debugger; }, (err) => { debugger; });
+
+    }
+
     getTasks(type: string): any {
         const isCompleted = type === 'open' ? 0 : 1;
         return new Promise(resolve => {

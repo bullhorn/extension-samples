@@ -32,15 +32,20 @@ export class TaskListComponent implements OnInit, OnDestroy {
         });
         this.taskSubscription = this.service.onNewTask.subscribe(() => { this.displayNewTask()});
         this.initializeForm();
-  }
+      }
 
-  ngOnDestroy() {
-    if (this.taskSubscription) {
-      this.taskSubscription.unsubscribe();
+      ngOnDestroy() {
+        if (this.taskSubscription) {
+          this.taskSubscription.unsubscribe();
+        }
+      }
+
+    close() {
+        this.addingNewTask = false;
     }
-  }
 
-    addTodo() {
+    addTodo(form) {
+        this.service.saveTodo(form.value).then(this.close());
     }
 
     displayNewTask() {
