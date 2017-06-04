@@ -24,10 +24,6 @@ export class ComplexTodoCardService {
         this.onNewTask.emit();
     }
 
-    // Open links
-    // Receive updates via events
-
-
     saveTodo(todo):any {
         //josh: is there a planned way to get user's data from appbridge?
         todo.dateBegin = new Date(todo.dateBegin).getTime();

@@ -152,3 +152,15 @@ This will deploy your application with the specified tag in the yaml. Once compl
 After the environment is up and running you may need to make future code changes. Once you push a new container to the registry you may upgrade an existing environment by running the following command.
 
 kubectl set image deployment/{{your-app}}-deployment {{your-app}}=us.gcr.io/mysalesduel/salesduel:tag
+
+### Add to Bullhorn
+
+Adding your app to Bullhorn as a custom card, custom tab, or page is easy. After logging into Bullhorn, from the menu, navigate to **Admin** then **View Layout**. ![image alt text](doc_files/image_5.png)
+
+Inside View Layout, select the entity on which you would like your custom card (tab, page, etc.) to display. Select the **Custom Card** tab, and click **Add New** to create a new custom card. After you have input the information for your custom card, click save. 
+
+![image alt text](doc_files/image_6.png)
+
+Navigate to the entity where you added your custom card to see it live!
+
+![image alt text](doc_files/image_7.png)
