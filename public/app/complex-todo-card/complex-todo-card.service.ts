@@ -5,40 +5,54 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 // APP
 import { MOCK_TODOS } from './mock-todo';
 interface ComplexToDo {
-    subject: string;
-    isCompleted: boolean;
-    dateBegin: any;
-    type: string;
-    dueText?: string;
-    dueType?: string;
-};
+    subject:string;
+    isCompleted:boolean;
+    dateBegin:any;
+    type:string;
+    dueText?:string;
+    dueType?:string;
+}
 @Injectable()
 export class ComplexTodoCardService {
-    todos: Array<ComplexToDo> = [];
-    onNewTask: EventEmitter<{ event: any }> = new EventEmitter<{ event: any }>();
+    todos:Array<ComplexToDo> = [];
+    onNewTask:EventEmitter<{ event:any }> = new EventEmitter<{ event:any }>();
 
-    constructor(private bridge: AppBridge) {
+    constructor(private bridge:AppBridge) {
     }
 
     openNewTask() {
-      this.onNewTask.emit();
+        this.onNewTask.emit();
     }
 
-    saveTodo(todo): any {
-        // should this be to: services/Task/create?
+    // Open links
+    // Receive updates via events
+
+
+    saveTodo(todo):any {
+        //josh: is there a planned way to get user's data from appbridge?
+        todo.dateBegin = new Date(todo.dateBegin).getTime();
+        todo.dateAdded = new Date().getTime();
         return this.bridge
-            .httpPUT(`/entity/Task`, JSON.stringify(todo)).then((res) => { debugger; }, (err) => { debugger; });
+            .httpPUT(`/entity/Task`, JSON.stringify(todo));
 
     }
 
-    getTasks(type: string): any {
+    openTask(data) {
+        this.bridge.open({
+            type: 'record',
+            entityType: 'Task',
+            entityId: data.id
+        });
+    }
+
+    getTasks(type:string):any {
         const isCompleted = type === 'open' ? 0 : 1;
         return new Promise(resolve => {
             const fields = ['id', 'subject', 'type', 'isCompleted', 'dateBegin'].join();
             const query = `isDeleted:0 AND isCompleted:${isCompleted}`;
             this.bridge
                 .httpGET(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`)
-                .then( response => {
+                .then(response => {
                     if (response && response.data && response.data.count) {
                         this.todos = response.data.data.map(item => {
                             const now = new Date();
@@ -67,17 +81,17 @@ export class ComplexTodoCardService {
         });
     }
 
-    getTimeDifference(dateValue: number): any {
+    getTimeDifference(dateValue:number):any {
         const diff = Math.abs(dateValue - new Date().getTime());
-        let result: any = {};
-        if (Math.ceil(diff / 3600000) < 24 ) {
+        let result:any = {};
+        if (Math.ceil(diff / 3600000) < 24) {
             result.number = Math.ceil(diff / 3600);
             if (result.number === 1) {
                 result.type = 'hour';
             } else {
                 result.type = 'hours';
             }
-        } else if (diff / (24 * 3600000) < 30 ) {
+        } else if (diff / (24 * 3600000) < 30) {
             result.number = Math.floor(diff / (24 * 3600));
             if (result.number === 1) {
                 result.type = 'day';
@@ -95,7 +109,7 @@ export class ComplexTodoCardService {
         return result;
     }
 
-    save(): void {
+    save():void {
         localStorage.setItem('complex-todos', JSON.stringify(this.todos));
     }
 }
