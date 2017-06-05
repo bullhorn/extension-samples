@@ -74,12 +74,12 @@ Run `npm deploy` to deploy your app!
 
 ### Add to Bullhorn
 
-Adding your app to Bullhorn as a custom card, custom tab, or page is easy. After logging into Bullhorn, from the menu, navigate to **Admin** then **View Layout**. ![image alt text](doc_files/image_5.png)
+Adding your app to Bullhorn as a custom card, custom tab, or page is easy. After logging into Bullhorn, from the menu, navigate to **Admin** then **View Layout**. ![image alt text](doc_files/image_2.png)
 
 Inside View Layout, select the entity on which you would like your custom card (tab, page, etc.) to display. Select the **Custom Card** tab, and click **Add New** to create a new custom card. After you have input the information for your custom card, click save. 
 
-![image alt text](doc_files/image_6.png)
+![image alt text](doc_files/image_3.png)
 
 Navigate to the entity where you added your custom card to see it live!
 
-![image alt text](doc_files/image_7.png)
+![image alt text](doc_files/image_4.png)
