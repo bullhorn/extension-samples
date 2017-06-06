@@ -1,8 +1,10 @@
 // NG2
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+// Vendor
 // APP
 import { AppComponent } from './app.component';
+import { TEST_PROVIDERS } from '../test.providers';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -13,6 +15,9 @@ describe('AppComponent', () => {
             declarations: [
                 AppComponent
             ],
+            providers: [
+                ...TEST_PROVIDERS
+            ]
         }).compileComponents();
     }));
 

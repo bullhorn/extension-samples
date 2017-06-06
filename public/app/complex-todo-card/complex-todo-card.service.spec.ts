@@ -1,36 +1,32 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { ComplexTodoCardService } from './complex-todo-card.service';
+import { TEST_PROVIDERS } from '../../test.providers';
 
 describe('ComplexTodoCardService', () => {
     let service;
-    beforeEach((inject([ComplexTodoCardService], (complexTodoCardService: ComplexTodoCardService) => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [ComplexTodoCardService]
+            providers: [
+                ComplexTodoCardService,
+                ...TEST_PROVIDERS
+            ]
         });
-        service = complexTodoCardService;
-    })));
-
-    describe('Function: Add(todo: any)', () => {
+    });
+    beforeEach(inject([ComplexTodoCardService], _service => {
+        service = _service;
+    }));
+    describe('Function: openNewTask()', () => {
         it('should add todo to the todo list in localStorage', () => {
-            service.addToDo('New TODO');
-            expect(service.todos.length).toBe(1);
+            spyOn(service.onNewTask, 'emit');
+            service.openNewTask();
+            expect(service.onNewTask.emit).toHaveBeenCalled();
         });
-        it('should add todo with title and done', () => {
-            const expectedTodo = {
-                title: 'New TODO',
-                done: false
-            };
-            service.addToDo('New TODO');
-            expect(service.todos[0]).toEqual(expectedTodo);
-        });
-        it('should add todo with done initialized to false', () => {
-            const expectedTodo = {
-                title: 'New TODO',
-                done: false
-            };
-            service.addToDo('New TODO');
-            expect(service.todos[0].done).toEqual(false);
+    });
+    describe('Function: openNewTask()', () => {
+        it('should add todo to the todo list in localStorage', () => {
+            spyOn(service.onNewTask, 'emit');
+            service.openNewTask();
+            expect(service.onNewTask.emit).toHaveBeenCalled();
         });
     });
 });

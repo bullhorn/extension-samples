@@ -104,8 +104,4 @@ export class ComplexTodoCardService {
         }
         return result;
     }
-
-    save():void {
-        localStorage.setItem('complex-todos', JSON.stringify(this.todos));
-    }
 }
