@@ -1,5 +1,5 @@
-# Custom Card Starter
-The goal of this repo is to provide a starting point to creating your own Custom Cards, Tabs or Pages and using those apps within Bullhorn. The custom-card-starter uses [Angular2](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements). For deployment, the custom-card-starter utilizes [Kubernetes](https://kubernetes.io/) and [Docker](https://docs.docker.com/get-started/).
+# Extension Samples
+The goal of this repo is to provide a starting point to creating your own Custom Cards, Tabs or Pages and using those apps within Bullhorn. Extension-samples uses [Angular2](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements). For deployment, extension-samples utilizes [Google SDK] (console.cloud.google.com).
 
 ### Prerequisites
  * [NodeJS](https://nodejs.org/en/) - at least v6.9.1
@@ -10,10 +10,10 @@ The goal of this repo is to provide a starting point to creating your own Custom
 
 ```bash
 # Clone the repo
-git clone https://github.com/bullhorn/custom-card-starter
+git clone https://github.com/bullhorn/extension-samples
 
 # CD into the project
-cd custom-card-starter
+cd extension-samples
 
 # Install all required dependencies
 npm install
@@ -44,7 +44,7 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ### Overview
 
-The purpose of this document is to outline the steps necessary to deploy your own applications, modeled after the custom-card-starter, within Google Cloud.
+The purpose of this document is to outline the steps necessary to deploy your application, within Google Cloud.
 
 ### Prerequisites
 

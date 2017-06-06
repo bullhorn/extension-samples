@@ -12,28 +12,28 @@ import {ComplexTodoCardService} from '../complex-todo-card.service';
     styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit, OnDestroy {
-    checklist:Array<any> = [];
-    subjectControl:TextBoxControl;
-    typeControl:SelectControl;
-    dueDateControl:DateTimeControl;
-    isCompletedControl:CheckboxControl;
-    newTodo:String = '';
-    todoForm:any;
-    layoutOptions:{ iconStyle:string };
-    addingNewTask:boolean = false;
-    taskSubscription:any;
-    newTask:any = {};
+    checklist: Array<any> = [];
+    subjectControl: TextBoxControl;
+    typeControl: SelectControl;
+    dueDateControl: DateTimeControl;
+    isCompletedControl: CheckboxControl;
+    newTodo: String = '';
+    todoForm: any;
+    layoutOptions: { iconStyle: string };
+    addingNewTask: Boolean = false;
+    taskSubscription: any;
+    newTask: any = {};
 
-    constructor(private formUtils:FormUtils, private route:ActivatedRoute, private service:ComplexTodoCardService) {
+    constructor(private formUtils: FormUtils, private route: ActivatedRoute, private service: ComplexTodoCardService) {
     }
 
     ngOnInit() {
         this.layoutOptions = {iconStyle: 'circle'};
-        this.route.data.subscribe((data:{ list:any }) => {
+        this.route.data.subscribe((data: { list: any }) => {
             this.checklist = data.list;
         });
         this.taskSubscription = this.service.onNewTask.subscribe(() => {
-            this.displayNewTask()
+            this.displayNewTask();
         });
         this.initializeForm();
     }

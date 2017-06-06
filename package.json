@@ -1,5 +1,5 @@
 {
-  "name": "custom-card-starter",
+  "name": "extension-samples",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "1.1.0-rc.0",
+    "@angular/cli": "1.1.0-rc.2",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.0.0",
     "@angular/common": "^4.0.0",
