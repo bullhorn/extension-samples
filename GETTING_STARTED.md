@@ -1,5 +1,5 @@
 # Extension Samples
-The goal of this repo is to provide a starting point to creating your own Custom Cards, Tabs or Pages and using those apps within Bullhorn. Extension-samples uses [Angular2](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements). For deployment, extension-samples utilizes [Google SDK] (console.cloud.google.com).
+The goal of this repo is to provide examples for creating your own Custom Cards, Tabs or Pages and using those apps within Bullhorn. The extension-samples started from [extension-starter](https://github.com/bullhorn/extension-starter). Both repos uses [Angular](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements).
 
 ### Prerequisites
  * [NodeJS](https://nodejs.org/en/) - at least v6.9.1
