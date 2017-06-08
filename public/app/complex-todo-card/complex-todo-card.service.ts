@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
 // Vendor
 import { PagedArrayCollection, AppBridge } from 'novo-elements';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -16,8 +17,17 @@ interface ComplexToDo {
 export class ComplexTodoCardService {
     todos:Array<ComplexToDo> = [];
     onNewTask:EventEmitter<{ event:any }> = new EventEmitter<{ event:any }>();
+    ownerId = 5467570;
 
-    constructor(private bridge:AppBridge) {
+    constructor(private bridge:AppBridge, private router: Router, private activatedRoute: ActivatedRoute) {
+        this.getOwnerId();
+    }
+
+    getOwnerId() {
+        let searchUrl = window.location.search.split('&').filter(x => x.startsWith('UserID'));
+        if (searchUrl.length > 0) {
+            this.ownerId = parseInt(searchUrl[0].split('=')[1]);
+        }
     }
 
     openNewTask() {
@@ -27,9 +37,24 @@ export class ComplexTodoCardService {
     saveTodo(todo):any {
         todo.dateBegin = new Date(todo.dateBegin).getTime();
         todo.dateAdded = new Date().getTime();
+        todo.owner = { id: this.ownerId };
+        todo.childTaskOwners = [{id: 5467570}];
+        todo.isPrivate = false;
+        todo.priority = 1;
+        todo.notificationMinutes = 660;
+        todo.recurrenceStyle = null;
         return this.bridge
-            .httpPUT(`/entity/Task`, JSON.stringify(todo));
+            .httpPUT(`services/Task/create?`, JSON.stringify(todo));
+    }
 
+    completeTodo(todoId: number) {
+        let todo = {
+            id: todoId,
+            isCompleted: true,
+            dateCompleted: new Date().getTime()
+        };
+        return this.bridge
+            .httpPOST(`entity/Task${todo.id}`, JSON.stringify(todo));
     }
 
     openTask(data) {
@@ -44,7 +69,7 @@ export class ComplexTodoCardService {
         const isCompleted = type === 'open' ? 0 : 1;
         return new Promise(resolve => {
             const fields = ['id', 'subject', 'type', 'isCompleted', 'dateBegin'].join();
-            const query = `isDeleted:0 AND isCompleted:${isCompleted}`;
+            const query = `isDeleted:0 AND isCompleted:${isCompleted} AND owner.id:${this.ownerId}`;
             this.bridge
                 .httpGET(`/search/Task?fields=${fields}&count=20&query=${query}&sort=dateBegin,-dateAdded`)
                 .then(response => {

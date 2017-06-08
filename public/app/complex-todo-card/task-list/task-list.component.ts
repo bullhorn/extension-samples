@@ -52,6 +52,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
         this.service.saveTodo(form.value).then(this.close());
     }
 
+    completeTask(todo: any) {
+        this.service.completeTodo(todo.id);
+    }
+
     updateAfterAdd() {
         this.service.getTasks('open');
         this.close();
@@ -72,10 +76,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
             hidden: false,
             placeholder: 'What\'s on your list?'
         });
-        this.isCompletedControl = new CheckboxControl({
-            //todo novoelements pass layout options through checkbox controls
-            key: 'isCompleted', config: { layoutOptions: this.layoutOptions }
-        });
+        // this.isCompletedControl = new CheckboxControl({
+        //     //todo novoelements pass layout options through checkbox controls
+        //     key: 'isCompleted', config: { layoutOptions: this.layoutOptions }
+        // });
         this.typeControl = new SelectControl({
             key: 'type',
             options: [{
@@ -89,6 +93,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
         this.dueDateControl = new DateTimeControl({
             key: 'dateBegin',
         });
-        this.todoForm = this.formUtils.toFormGroup([this.isCompletedControl, this.subjectControl, this.typeControl, this.dueDateControl]);
+        this.todoForm = this.formUtils.toFormGroup([this.subjectControl, this.typeControl, this.dueDateControl]);
     }
 }
