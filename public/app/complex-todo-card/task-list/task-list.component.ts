@@ -23,6 +23,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     addingNewTask: Boolean = false;
     taskSubscription: any;
     newTask: any = {};
+    loading: Boolean = false;
 
     constructor(private formUtils: FormUtils, private route: ActivatedRoute, private service: ComplexTodoCardService) {
     }
@@ -62,7 +63,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
 
     displayNewTask() {
-        //reset form values
         this.addingNewTask = true;
     }
 
@@ -76,10 +76,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
             hidden: false,
             placeholder: 'What\'s on your list?'
         });
-        // this.isCompletedControl = new CheckboxControl({
-        //     //todo novoelements pass layout options through checkbox controls
-        //     key: 'isCompleted', config: { layoutOptions: this.layoutOptions }
-        // });
         this.typeControl = new SelectControl({
             key: 'type',
             options: [{

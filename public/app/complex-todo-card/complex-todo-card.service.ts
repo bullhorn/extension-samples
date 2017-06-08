@@ -4,19 +4,18 @@ import { Router, ActivatedRoute} from '@angular/router';
 import { PagedArrayCollection, AppBridge } from 'novo-elements';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 // APP
-import { MOCK_TODOS } from './mock-todo';
 interface ComplexToDo {
-    subject:string;
-    isCompleted:boolean;
-    dateBegin:any;
-    type:string;
-    dueText?:string;
-    dueType?:string;
+    subject: string;
+    isCompleted: boolean;
+    dateBegin: any;
+    type: string;
+    dueText?: string;
+    dueType?: string;
 }
 @Injectable()
 export class ComplexTodoCardService {
-    todos:Array<ComplexToDo> = [];
-    onNewTask:EventEmitter<{ event:any }> = new EventEmitter<{ event:any }>();
+    todos: Array<ComplexToDo> = [];
+    onNewTask: EventEmitter<{ event: any }> = new EventEmitter<{ event: any }>();
     ownerId = 5467570;
 
     constructor(private bridge:AppBridge, private router: Router, private activatedRoute: ActivatedRoute) {
@@ -34,7 +33,7 @@ export class ComplexTodoCardService {
         this.onNewTask.emit();
     }
 
-    saveTodo(todo):any {
+    saveTodo(todo): any {
         todo.dateBegin = new Date(todo.dateBegin).getTime();
         todo.dateAdded = new Date().getTime();
         todo.owner = { id: this.ownerId };
@@ -65,7 +64,7 @@ export class ComplexTodoCardService {
         });
     }
 
-    getTasks(type:string):any {
+    getTasks(type: string): any {
         const isCompleted = type === 'open' ? 0 : 1;
         return new Promise(resolve => {
             const fields = ['id', 'subject', 'type', 'isCompleted', 'dateBegin'].join();
@@ -101,9 +100,9 @@ export class ComplexTodoCardService {
         });
     }
 
-    getTimeDifference(dateValue:number):any {
+    getTimeDifference(dateValue: number): any {
         const diff = Math.abs(dateValue - new Date().getTime());
-        let result:any = {};
+        let result: any = {};
         if (Math.ceil(diff / 3600000) < 24) {
             result.number = Math.ceil(diff / 3600);
             if (result.number === 1) {

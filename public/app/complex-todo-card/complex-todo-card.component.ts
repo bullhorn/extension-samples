@@ -11,7 +11,7 @@ import { ComplexTodoCardService } from './complex-todo-card.service';
 
 export class ComplexTodoCardComponent {
 
-    //TODO - these numbers should be real
+    // TODO - these numbers should be real
     totalCompleted = 10;
     totalOpen = 5;
 
