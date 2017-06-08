@@ -76,16 +76,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
             hidden: false,
             placeholder: 'What\'s on your list?'
         });
-<<<<<<< HEAD
-        // this.isCompletedControl = new CheckboxControl({
-        //     //todo novoelements pass layout options through checkbox controls
-        //     key: 'isCompleted', config: { layoutOptions: this.layoutOptions }
-        // });
-=======
-        this.isCompletedControl = new CheckboxControl({
-            key: 'isCompleted', config: { layoutOptions: this.layoutOptions }
-        });
->>>>>>> Lint
+
         this.typeControl = new SelectControl({
             key: 'type',
             options: [{
