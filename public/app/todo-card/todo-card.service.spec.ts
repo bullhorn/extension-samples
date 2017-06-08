@@ -22,7 +22,7 @@ describe('TodoCardService', () => {
         });
         it('should add todo with title and done', () => {
             service.todos = [];
-            let expectedTodo = {
+            const expectedTodo = {
                 title: 'New TODO',
                 done: false
             };
@@ -31,7 +31,7 @@ describe('TodoCardService', () => {
         });
         it('should add todo with done initialized to false', () => {
             service.todos = [];
-            let expectedTodo = {
+            const expectedTodo = {
                 title: 'New TODO',
                 done: false
             };
