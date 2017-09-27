@@ -99,7 +99,7 @@ export const TEST_SERVICE_PROVIDERS = [
     {
         provide: AppBridge,
         useFactory: () => new AppBridge('testAppBridge'),
-    }
+    },
     // APP
     ...COMPONENTS,
     ...SERVICES

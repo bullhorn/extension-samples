@@ -4,23 +4,16 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm run start:node",
-    "start:dev": "npm-run-all -p -r start:ng start:node",
-    "start:aot": "npm-run-all -p -r start:ng:aot start:node",
-    "start:node": "nodemon server/index.js",
-    "start:ng": "npm run ng -- build --aot=false --watch",
-    "start:ng:aot": "npm run ng -- build --aot --watch",
-    "analyze": "npm run ng -- build --verbose --json --aot --prod",
-    "test": "npm run ng -- test --code-coverage --single-run",
-    "lint": "npm run ng -- lint",
-    "build": "npm run ng -- build --aot",
-    "deploy": "gcloud app deploy"
+    "start": "ng serve --port 3000",
+    "build": "ng build --aot --prod",
+    "build:staging": "ng build --aot --env=staging",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "1.1.0-rc.2",
-    "@angular/compiler-cli": "^4.0.0",
-    "@angular/language-service": "^4.0.0",
+    "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
@@ -45,6 +38,9 @@
     "zone.js": "^0.8.10"
   },
   "devDependencies": {
+    "@angular/cli": "^1.3.1",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/language-service": "^4.0.0",
     "@google-cloud/nodejs-repo-tools": "1.3.1",
     "@ngtools/webpack": "^1.3.1",
     "@types/jasmine": "2.5.38",
