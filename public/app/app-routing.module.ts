@@ -1,5 +1,6 @@
 // NG2
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
 @NgModule({
     imports: [
         // NG2
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        BrowserAnimationsModule
     ],
     exports: [
         // NG2

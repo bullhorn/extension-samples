@@ -93,9 +93,9 @@ export class ComplexTodoCardService {
                         resolve([]);
                     }
                 })
-                .catch(err => {
-                    resolve(this.todos);
+                .catch((err) => {
                     console.error('error', err);
+                    resolve(this.todos);
                 });
         });
     }
