@@ -4,5 +4,25 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  /**
+   * AppBridge Config:
+   *  - url: The url where the custom tab is located (overwritten dynamically for custom actions)
+   *  - title: Overwrites the title of the bowling alley tab for a custom action.
+   *  - color: Overwrites the color of the bowling alley tab for a custom action.
+   */
+  appBridgeConfig: {
+    url: 'https://local.bullhornstaffing.com:4201',
+    title: 'Extension Local',
+    color: 'blue',
+  },
 };
+
+/*
+ * In development mode, for easier debugging, you can ignore zone related error
+ * stack frames such as `zone.run`/`zoneDelegate.invokeTask` by importing the
+ * below file. Don't forget to comment it out in production mode
+ * because it will have a performance impact when errors are thrown
+ */
+import 'zone.js/dist/zone-error'; // Included with Angular CLI.
