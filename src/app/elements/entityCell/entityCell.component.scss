@@ -1,0 +1,17 @@
+@import '~novo-elements/novo-elements.scss';
+@import '../../../styles.scss';
+
+.entity-cell {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  button {
+    font-size: 1.2em;
+    margin-right: 0.5em;
+  }
+
+  i.bhi-circle {
+    margin-right: .3em;
+  }
+}
