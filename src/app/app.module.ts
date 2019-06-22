@@ -9,11 +9,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'related-candidates', pathMatch: 'full' },
-  { path: 'related-candidates', loadChildren: './components/relatedCandidates/relatedCandidates.module#RelatedCandidatesModule' },
-  { path: 'related-jobs', loadChildren: './components/relatedJobs/relatedJobs.module#RelatedJobsModule' },
-  { path: 'pipeline-forecast', loadChildren: './components/pipelineForecast/pipelineForecast.module#PipelineForecastModule' },
-  { path: 'strike-zone', loadChildren: './components/strikeZone/strikeZone.module#StrikeZoneModule' },
+  { path: '', redirectTo: 'record-tab', pathMatch: 'full' },
+  { path: 'card-comparison', loadChildren: './components/cardComparison/cardComparison.module#CardComparisonModule' },
+  { path: 'card-forecast', loadChildren: './components/cardForecast/cardForecast.module#CardForecastModule' },
+  { path: 'card-potential', loadChildren: './components/cardPotential/cardPotential.module#CardPotentialModule' },
+  { path: 'list-action', loadChildren: './components/listAction/listAction.module#ListActionModule' },
+  { path: 'record-action', loadChildren: './components/recordAction/recordAction.module#RecordActionModule' },
+  { path: 'record-tab', loadChildren: './components/recordTab/recordTab.module#RecordTabModule' },
 ];
 
 @NgModule({
