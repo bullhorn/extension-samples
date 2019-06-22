@@ -1,0 +1,17 @@
+@import '~novo-elements/novo-elements.scss';
+@import '../../../styles.scss';
+
+.historic-jobs {
+  display: flex;
+  flex-direction: column;
+
+  .jobs-container {
+    display: flex;
+    flex-direction: column;
+
+    novo-tiles {
+      padding-top: 1em;
+      align-self: center;
+    }
+  }
+}

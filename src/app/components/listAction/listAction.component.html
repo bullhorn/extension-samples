@@ -1,0 +1,69 @@
+<header icon="sms" theme="note" title="Request candidate to confirm end date">
+  <utils>
+    <util-action icon="refresh" (click)="refresh()"></util-action>
+    <util-action icon="times" (click)="close()"></util-action>
+  </utils>
+</header>
+<main>
+  <div *ngIf="loading" class="loading-container">
+    <novo-loading></novo-loading>
+  </div>
+  <div *ngIf="!loading && !authorized" class="unauthorized-container">
+    <i class="bhi-inactive"></i>
+    <h2 class="details">This action is not available for your user type. Please contact your admin if this is in error.</h2>
+  </div>
+  <div *ngIf="!loading && authorized && !sent" class="send-container">
+    <novo-data-table [rows]="rows"
+                     [columns]="columns"
+                     [displayedColumns]="displayColumns"
+                     #table>
+      <ng-template novoTemplate="timestamp" let-row let-col="col">
+        <div class="date-cell">{{ row[col.id] | date: 'E MMM dd yyyy' }}</div>
+      </ng-template>
+      <ng-template novoTemplate="message" let-row let-col="col">
+        <div class="message-cell">{{ instantiateTemplate(startMessageTemplate, row) }}</div>
+      </ng-template>
+    </novo-data-table>
+    <div *ngIf="rows.length" class="help-text">
+      <div class="details">An email update will be sent to {{ corporateUser?.email }} when the candidate responds.</div>
+    </div>
+  </div>
+  <div *ngIf="authorized && optedOutPlacements.length" class="opt-out-container">
+    <div class="notify">
+      <label>
+        These candidates have not Opted In to receiving text messages:
+      </label>
+      <div class="details">
+        <div *ngFor="let placement of optedOutPlacements" class="opt-out-candidate">
+          {{ placement.candidate.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="authorized && missingFieldsPlacements.length" class="missing-fields-container">
+    <div class="notify">
+      <label>
+        The following placements are missing required fields:
+      </label>
+      <div class="details">
+        <div *ngFor="let placement of missingFieldsPlacements" class="missing-field">
+          {{ placement | render }} - Missing: {{ getMissingFields(placement) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="authorized && sent" class="report-container">
+    <div class="notify">
+      <label>
+        SMS Message Sent Successfully
+      </label>
+      <div class="details">SMS has successfully been sent. An email will be sent to {{ corporateUser?.email }} with the candidate's updated end date
+        when the candidate responds.
+      </div>
+    </div>
+  </div>
+</main>
+<footer *ngIf="!loading && authorized">
+  <button *ngIf="!sent" theme="primary" color="action" icon="send" (click)="send()" [loading]="sending">Send</button>
+  <button *ngIf="sent" theme="standard" (click)="close()">Close</button>
+</footer>

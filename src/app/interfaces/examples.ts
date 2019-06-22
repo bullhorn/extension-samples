@@ -1,37 +1,6 @@
-import { Candidate, JobOrder } from '@bullhorn/bullhorn-types';
-
-// region Bullhorn API
-
-export interface CandidateResponse {
-  data: Candidate[];
-  meta: Meta;
-}
-
-export interface Meta {
-  fields: any[];
-}
-
-export interface JobOrderSearchResponse {
-  data: JobOrder[];
-  meta?: Meta;
-}
-
-export interface JobOrderEntityResponse {
-  data: JobOrder;
-  meta?: Meta;
-}
-
-export interface SearchResponse {
-  data: any[];
-  meta?: Meta;
-  total: number;
-  start: number;
-  count: number;
-}
-
-// endregion
-// region Historic Jobs
-
+/**
+ * Types specific to these sample extensions that provide some cool demo functionality
+ */
 export enum JobCategory {
   Company = 0,
   Role,
@@ -102,5 +71,3 @@ export interface ProbabilityScoreOutput {
 }
 
 export type ProbabilityScore = 'low' | 'medium' | 'high';
-
-// endregion

@@ -1,5 +1,7 @@
 import * as harmonicMean from 'compute-hmean';
-import { Averages, HistoricJob, HistoricJobCategory, ProbabilityScore, ProbabilityScoreInput, ProbabilityScoreOutput } from '../interfaces';
+import {
+  Averages, HistoricJob, HistoricJobCategory, ProbabilityScore, ProbabilityScoreInput, ProbabilityScoreOutput
+} from '../interfaces/examples';
 import { JobOrder } from '@bullhorn/bullhorn-types';
 
 export class Util {
