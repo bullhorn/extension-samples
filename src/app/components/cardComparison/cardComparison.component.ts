@@ -6,9 +6,9 @@ import { EntityTypes, JobOrder } from '@bullhorn/bullhorn-types';
 import * as Chart from 'chart.js';
 // App
 import { AppBridgeService, HttpService } from '../../services';
-import { Util } from '../../util/util';
 import { ScatterPlotComponent } from '../../elements';
-import { Averages, HistoricJobCategory, JobCategory, ProbabilityScore, ProbabilityScoreInput } from '../../interfaces/examples';
+import { Util } from '../../util/util';
+import { Averages, HistoricJobCategory, ProbabilityScore, ProbabilityScoreInput } from '../../interfaces/examples';
 import { BullhornMeta, JobOrderResponse } from '../../interfaces/bullhorn';
 
 @Component({
@@ -72,15 +72,6 @@ export class CardComparisonComponent implements OnInit {
       this.appBridgeService.onRegistered.subscribe(this.onRegistered.bind(this));
       this.appBridgeService.register();
     }
-  }
-
-  update(): void {
-    this.computeProbabilityScore();
-    setTimeout(() => {
-      if (this.scatterPlotComponent) {
-        this.scatterPlotComponent.update();
-      }
-    }, 50);
   }
 
   private async onRegistered(isRegistered) {
@@ -189,33 +180,6 @@ export class CardComparisonComponent implements OnInit {
     };
     this.probabilityToClose = Util.computeProbabilityScore(input, this.averages).probabilityToClose;
     this.probabilityScore = Util.getProbabilityScore(this.daysSpent, this.averages);
-    this.printDebuggingInfo();
-  }
-
-  /**
-   * Print debugging information in the console
-   */
-  private printDebuggingInfo() {
-    const averagesTable: any = {
-      'Company': Util.roundForPrinting(this.historicJobCategories[JobCategory.Company].averages),
-    };
-    averagesTable.Average = Util.roundForPrinting(this.averages);
-    console.table(averagesTable);
-    const options = { day: 'numeric', month: 'short', year: 'numeric' };
-    const calculationsTable: any = {
-      daysOpen: this.daysOpen,
-      projectedStartDate: this.projectedStartDate.toLocaleDateString('en-US', options),
-      projectedFillDate: this.projectedFillDate.toLocaleDateString('en-US', options),
-      daysSpent: this.daysSpent,
-      daysRemaining: this.daysRemaining,
-      numOpenings: this.numOpenings,
-      numSubmissions: this.numSubmissions,
-      placementPotential: Util.roundToPrecision(this.probabilityToClose, 3),
-    };
-    if (this.daysUntilStartDate > 0) {
-      calculationsTable.daysUntilStartDate = this.daysUntilStartDate;
-    }
-    console.table(calculationsTable);
   }
 
   private handleError(err: Error) {

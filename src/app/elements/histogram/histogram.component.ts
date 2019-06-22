@@ -5,7 +5,7 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective, Color } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 // App
-import { HistoricJobCategory, JobCategory } from '../../interfaces';
+import { HistoricJobCategory, JobCategory } from '../../interfaces/examples';
 import { Util } from '../../util/util';
 
 @Component({
