@@ -10,6 +10,7 @@ import { Util } from '../../util/util';
 import { Averages, HistoricJobCategory, JobCategory, ProbabilityScore, ProbabilityScoreInput } from '../../interfaces/examples';
 import { StateUtil } from '../../util/stateUtil';
 import { DoughnutChartComponent, HistoricJobsComponent } from '../../elements';
+import { BullhornMeta, JobOrderResponse } from '../../interfaces/bullhorn';
 
 @Component({
   selector: 'app-card-potential',
@@ -19,7 +20,7 @@ import { DoughnutChartComponent, HistoricJobsComponent } from '../../elements';
 export class CardPotentialComponent implements OnInit {
   // Current job data
   currentJob: JobOrder;
-  jobMeta: { fields: any[] };
+  jobMeta: BullhornMeta;
   jobFields: string[] = ['id', 'clientCorporation', 'title', 'dateAdded', 'startDate', 'dateClosed', 'numOpenings',
     'address(state)', 'submissions[10](dateAdded)', 'placements[10](dateAdded)'];
   creationDate: Date;
@@ -113,36 +114,19 @@ export class CardPotentialComponent implements OnInit {
    * If the model server doesn't respond, or doesn't have any data, we continue on without.
    */
   private getCurrentJobDataAndRelatedJobIds() {
-    // Promise.all([
-    //   this.httpService.getEntity(EntityTypes.JobOrder, this.entityId, this.jobFields.join(), 'basic'),
-    //   this.modelService.getRelatedJobs(this.entityId, this.corpId).catch(console.error),
-    // ]).then((responses: any[]) => {
-    //   const jobOrderResponse: JobOrderResponse = responses[0];
-    //   this.currentJob = jobOrderResponse.data;
-    //   this.jobMeta = jobOrderResponse.meta;
-    //
-    //   // Pull significant fields into individual member variables for adjusting dynamically using the demo
-    //   this.creationDate = new Date(Util.convertToNumber(this.currentJob.dateAdded));
-    //   this.startDate = new Date(Util.convertToNumber(this.currentJob.startDate));
-    //   this.numSubmissions = responses[0].data.submissions.total;
-    //   this.numOpenings = Math.min(jobOrderResponse.data.numOpenings, 1);
-    //
-    //   const relatedJobsResponse: RelatedJobsResponse = responses[1];
-    //   if (!relatedJobsResponse || relatedJobsResponse.status >= 500) {
-    //     console.error('Model Server Error: ', relatedJobsResponse ? relatedJobsResponse.message : 'Unknown model response');
-    //   } else if (relatedJobsResponse.status >= 400 && relatedJobsResponse.status < 500) {
-    //     if (relatedJobsResponse.status === 404) {
-    //       console.error(`Model Server Error - Job Has Not Been Processed. Check the Auto Match tab for current status.`);
-    //     } else {
-    //       console.error(`Model Server Error: ${relatedJobsResponse.status} - ${relatedJobsResponse.message}`);
-    //     }
-    //   } else if (relatedJobsResponse.total > 0) {
-    //     this.matchModelJobs = relatedJobsResponse.data;
-    //   }
-    //
-    //   this.getAllHistoricJobData();
-    //
-    // }).catch(this.handleError.bind(this));
+    this.httpService.getEntity(EntityTypes.JobOrder, this.entityId, this.jobFields.join(), 'basic').then((response: any) => {
+      const jobOrderResponse: JobOrderResponse = response;
+      this.currentJob = jobOrderResponse.data;
+      this.jobMeta = jobOrderResponse.meta;
+
+      // Pull significant fields into individual member variables for adjusting dynamically using the demo
+      this.creationDate = new Date(Util.convertToNumber(this.currentJob.dateAdded));
+      this.startDate = new Date(Util.convertToNumber(this.currentJob.startDate));
+      this.numSubmissions = response.data.submissions.total;
+      this.numOpenings = Math.min(jobOrderResponse.data.numOpenings, 1);
+      this.getAllHistoricJobData();
+
+    }).catch(this.handleError.bind(this));
   }
 
   /**
@@ -157,8 +141,6 @@ export class CardPotentialComponent implements OnInit {
    *  3. Regional total jobs count
    *  4. Regional jobs with submissions
    *  5. Regional jobs with placements
-   *  6. Related total jobs count
-   *  7. Related jobs with placements
    */
   private getAllHistoricJobData(): void {
     // Create search strings
@@ -187,12 +169,6 @@ export class CardPotentialComponent implements OnInit {
         Util.createHistoricJobsAndAverages(responses[0].total, responses[1].total, responses[2].total, responses[2].data),
         Util.createHistoricJobsAndAverages(responses[3].total, responses[4].total, responses[5].total, responses[5].data),
       ];
-      if (responses[6]) {
-        this.historicJobCategories.push(
-          // All related jobs have submissions, so count is identical to total number returned
-          Util.createHistoricJobsAndAverages(responses[6].total, responses[6].total, responses[7].total, responses[7].data),
-        );
-      }
       this.averages = Util.computeAverages(this.historicJobCategories);
       this.computeProbabilityScore();
       this.loading = false;

@@ -3,7 +3,7 @@ import { NovoModalParams, NovoModalRef } from 'novo-elements';
 
 @Component({
   selector: 'app-error-modal',
-  styleUrls: ['./error-modal.component.scss'],
+  styleUrls: ['./errorModal.component.scss'],
   template: `
     <novo-notification type="warning">
       <h1>{{ error }}</h1>

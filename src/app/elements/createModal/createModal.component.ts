@@ -8,7 +8,7 @@ import { BullhornMeta } from '../../interfaces/bullhorn';
 
 @Component({
   selector: 'app-create-modal',
-  styleUrls: ['./create-modal.component.scss'],
+  styleUrls: ['./createModal.component.scss'],
   template: `
     <novo-modal id="create-modal">
       <header title="Create VMS Submittal" theme="submission" icon="star-o">

@@ -8,8 +8,8 @@ import { CorporateUser, Placement } from '@bullhorn/bullhorn-types';
 import { forkJoin, Observable } from 'rxjs';
 // App
 import { AppBridgeService } from '../../services';
-import { Util } from '../../util/Util';
 import { BullhornMeta } from '../../interfaces/bullhorn';
+import { Util } from '../../util/util';
 
 @Component({
   selector: 'app-list-action',
