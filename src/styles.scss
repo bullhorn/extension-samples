@@ -48,3 +48,15 @@ novo-modal {
 novo-data-table-cell {
   padding: 2px !important;
 }
+
+@mixin sticky-footer() {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+  z-index: 100;
+  background-color: $background;
+
+  button {
+    margin-left: 1rem;
+  }
+}

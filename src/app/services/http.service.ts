@@ -5,14 +5,14 @@ import { AppBridge } from 'novo-elements';
 import { EntityTypes } from '@bullhorn/bullhorn-types';
 // APP
 import { AppBridgeService } from './appBridge.service';
-import { SearchResponse } from '../interfaces';
+import { SearchResponse } from '../interfaces/bullhorn';
 
 /**
  * Provides simple methods for calling Bullhorn rest endpoints via app bridge.
  */
 @Injectable()
 export class HttpService {
-  private MAX_RECORDS_TO_RETURN = 700;
+  private MAX_RECORDS_TO_RETURN = 500;
 
   constructor(private appBridgeService: AppBridgeService) {}
 
@@ -93,9 +93,7 @@ export class HttpService {
    *
    * If the entity is indexed using Lucene, then a /search call will be made. If non-indexed, then /query will be used.
    * If there are more records than can be returns (total > count) then makes follow on calls until the count or
-   * total has been reached, whichever comes first.
-   *
-   * If a small count is provided, follow-on calls will not be made.
+   * total has been reached, whichever comes first. If a small count is provided, follow-on calls will not be made.
    */
   search(entityType: EntityTypes,
          query: string,

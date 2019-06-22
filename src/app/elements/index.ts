@@ -1,7 +1,13 @@
 export { AddressCellModule } from './addressCell/addressCell.module';
+export { AddressCellComponent } from './addressCell/addressCell.component';
+export { CreateModalComponent } from './createModal/createModal.component';
+export { DoughnutChartComponent } from './doughnutChart/doughnutChart.component';
 export { EntityCellModule } from './entityCell/entityCell.module';
+export { EntityCellComponent } from './entityCell/entityCell.component';
+export { ErrorModalModule } from './errorModal/errorModal.module';
+export { ErrorModalComponent } from './errorModal/errorModal.component';
 export { HistogramComponent } from './histogram/histogram.component';
 export { HistoricJobsComponent } from './historicJobs/historicJobs.component';
 export { HtmlCellModule } from './htmlCell/htmlCell.module';
-export { LineChartComponent } from './lineChart/lineChart.component';
+export { HtmlCellComponent } from './htmlCell/htmlCell.component';
 export { ScatterPlotComponent } from './scatterPlot/scatterPlot.component';
