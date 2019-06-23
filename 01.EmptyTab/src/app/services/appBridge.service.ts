@@ -1,1 +1,1 @@
-../../../../shared/services/appBridge.service.ts
+../../../../shared/app/services/appBridge.service.ts
