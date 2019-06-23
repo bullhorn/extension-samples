@@ -1,0 +1,1 @@
+../../../../shared/interfaces/bullhorn.ts
