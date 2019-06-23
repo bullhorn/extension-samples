@@ -16,13 +16,28 @@
     <div *ngIf="loading" class="loading-container">
       <novo-loading></novo-loading>
     </div>
-    <div *ngIf="errorMessage" class="error-container">
-      <i class="bhi-caution"></i>
-      <h2 class="details">{{errorMessage}}</h2>
-      <h3 class="details">{{errorDetails}}</h3>
-    </div>
-    <div *ngIf="!loading && !errorMessage">
-      Hi, this is a custom tab.
+    <div *ngIf="!loading" class="details-container">
+      <h3>Details provided to this custom tab:</h3>
+      <div class="detail">
+        <label>Entity Type</label>
+        <div class="value">{{entityType}}</div>
+      </div>
+      <div class="detail">
+        <label>Entity ID</label>
+        <div class="value">{{entityId}}</div>
+      </div>
+      <div class="detail">
+        <label>User ID</label>
+        <div class="value">{{userId}}</div>
+      </div>
+      <div class="detail">
+        <label>Private Label ID</label>
+        <div class="value">{{privateLabelId}}</div>
+      </div>
+      <div class="detail">
+        <label>Corporation ID</label>
+        <div class="value">{{corpId}}</div>
+      </div>
     </div>
   </section>
 </div>
