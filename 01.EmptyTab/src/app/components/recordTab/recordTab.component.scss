@@ -64,22 +64,28 @@
       padding: 10rem;
     }
 
-    .table-container {
+    .details-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       color: $grey;
+      min-height: 30em;
 
-      .job-details {
+      .detail {
         display: flex;
-        padding-left: 5em;
+        align-items: center;
 
-        .description {
-          flex: 1;
+        label {
+          text-transform: uppercase;
+          color: grey;
+          font-weight: 500;
+          font-size: 0.9em;
+          user-select: none;
+          margin-right: 1em;
         }
 
-        .processed {
-          flex: 1;
+        .value {
+          color: $black
         }
       }
     }
