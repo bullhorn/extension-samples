@@ -2,8 +2,8 @@ export const environment = {
   production: true,
 
   /**
-   * AppBridge Config:
-   *  - url: The url where the custom tab is located (overwritten dynamically for custom actions)
+   * AppBridge Config: Used for custom actions and menu items where there is a new bowling alley tab.
+   *  - url: The url of the bowling alley tab (overwritten in AppBridge.service.ts dynamically)
    *  - title: Overwrites the title of the bowling alley tab for a custom action.
    *  - color: Overwrites the color of the bowling alley tab for a custom action.
    */
