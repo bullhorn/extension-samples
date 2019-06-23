@@ -14,7 +14,7 @@ export const environment = {
    */
   appBridgeConfig: {
     url: 'https://local.bullhornstaffing.com:4201',
-    title: 'Extension Local',
+    title: 'Custom Action Local',
     color: 'blue',
   },
 };
