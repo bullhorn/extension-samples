@@ -1,11 +1,13 @@
 # Extension Samples
-The goal of this repo is to provide examples for creating your own Custom Cards, Tabs or Pages and using those apps within Bullhorn. The extension-samples started from [extension-starter](https://github.com/bullhorn/extension-starter). Both repos uses [Angular](https://angular.io), [angular-cli](https://cli.angular.io/), and Bullhorn's open-source UI library [Novo Elements](https://github.com/bullhorn/novo-elements).
+Bullhorn offers several ways to customize the recruiter experience using code. There are custom tabs, custom cards, custom record actions, custom list actions, and more. In this repo are several examples to get you started building custom extensions fast using [Novo Elements](https://github.com/bullhorn/novo-elements).
 
 ### Prerequisites
- * [NodeJS](https://nodejs.org/en/) - at least v6.9.1
- * [NPM](https://github.com/npm/npm) - at least v3.0
- * [angular-cli](https://cli.angular.io/) - recommended
+ * [NodeJS](https://nodejs.org/en/) - version 10
 
+#### For Windows Users
+ * Because this repo reuses the same shared files over and over again for each example project, symlinks are used to avoid duplication in the repo and allow for files to be copied around where needed in projects. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow for unix symlinks to be properly handled. 
+ * Or, you can simply copy/paste the files, replacing the symlinks where needed, since you'll probably end up doing that anyway when it comes time to start your next extension project.
+ 
 ### Quick Start
 
 ```bash
@@ -22,6 +24,8 @@ npm install -g @angular/cli
 # Start the app
 npm start
 ```
+
+
 
 Now, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser and code!
 
