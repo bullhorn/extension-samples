@@ -1,0 +1,62 @@
+// Vendor
+@import '~novo-elements/novo-elements.scss';
+
+// The need for 100% height changes based on the type of extension:
+//  - Custom Tabs and Custom Actions need 100% height because they are inside of a really long page.
+//  - Custom Cards do not need any height specified, they should shrink to the size of the contents.
+html.custom-tab,
+html.custom-action {
+  height: 100%;
+
+  body, app-root {
+    height: 100%;
+  }
+}
+
+// This matches the zoom out novo functionality so that headers, proportions, icons and text
+// are the same size as the surrounding app. This should not be applied for S-Release.
+//
+// Set zoom property - Chrome and Safari Only
+// Not supported in FF/Opera
+// Not done for Edge due to poor handling of this feature
+// Stop-gap solution until everything is em
+@supports (-webkit-font-smoothing: antialiased) {
+  .zoom-out {
+    zoom: 0.9;
+
+    // Zoom correction for positioning of popups that pop above the picker
+    .cdk-overlay-pane {
+      margin-bottom: calc(100vh * 0.11);
+      margin-right: calc(100vw * 0.11);
+    }
+
+    // Zoom correction for charts that can't handle zoom
+    canvas {
+      zoom: 1.11;
+    }
+  }
+}
+
+novo-modal {
+  section {
+    novo-dynamic-form {
+      padding-top: 2em;
+    }
+  }
+}
+
+novo-data-table-cell {
+  padding: 2px !important;
+}
+
+@mixin sticky-footer() {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+  z-index: 100;
+  background-color: $background;
+
+  button {
+    margin-left: 1rem;
+  }
+}
