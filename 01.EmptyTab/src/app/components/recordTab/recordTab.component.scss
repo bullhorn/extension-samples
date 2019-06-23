@@ -23,40 +23,12 @@
   height: 100%;
   background-color: $background-dark;
 
-  .processed {
-    background: white;
-    padding: 1em;
-    margin-bottom: 1.4em;
-  }
-
   .activity-section {
     display: block;
     position: relative;
     border-top: none;
     background-color: $white;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-
-    header {
-      width: 100%;
-
-      .header-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 20px;
-        font-size: 11px;
-        border-top: 3px solid $job;
-        border-bottom: 1px solid $off-white;
-
-        h1 {
-          font-size: 1.5em;
-        }
-
-        span {
-          color: $dark;
-        }
-      }
-    }
 
     .loading-container {
       display: flex;
