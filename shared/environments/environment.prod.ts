@@ -9,7 +9,7 @@ export const environment = {
    */
   appBridgeConfig: {
     url: 'https://bullhorn-extension.firebaseapp.com',
-    title: 'Extension',
+    title: 'Custom Action',
     color: 'neutral',
   },
 };

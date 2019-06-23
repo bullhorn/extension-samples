@@ -1,0 +1,38 @@
+<header icon="rocket" theme="company" title="Example Record Action">
+  <utils *ngIf="connected">
+    <util-action icon="times" (click)="close()"></util-action>
+  </utils>
+</header>
+<div *ngIf="!connected" class="error-container">
+  <i class="bhi-inactive"></i>
+  <h2 class="details">Cannot connect to Bullhorn.</h2>
+  <h3 class="details">This app can only be run inside of Bullhorn as a Custom Action. Please contact your admin if this is in error.</h3>
+</div>
+<div *ngIf="connected" class="custom-action">
+  <div *ngIf="loading" class="loading-container">
+    <novo-loading></novo-loading>
+  </div>
+  <div *ngIf="!loading" class="details-container">
+    <h3>Details provided to this custom action:</h3>
+    <div class="detail">
+      <label>Entity Type</label>
+      <div class="value">{{entityType}}</div>
+    </div>
+    <div class="detail">
+      <label>Entity ID</label>
+      <div class="value">{{entityId}}</div>
+    </div>
+    <div class="detail">
+      <label>User ID</label>
+      <div class="value">{{userId}}</div>
+    </div>
+    <div class="detail">
+      <label>Private Label ID</label>
+      <div class="value">{{privateLabelId}}</div>
+    </div>
+    <div class="detail">
+      <label>Corporation ID</label>
+      <div class="value">{{corpId}}</div>
+    </div>
+  </div>
+</div>
