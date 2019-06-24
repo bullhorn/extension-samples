@@ -5,8 +5,8 @@ Bullhorn offers several ways to customize the recruiter experience using code. T
  * [NodeJS](https://nodejs.org/en/) - version 10
 
 #### For Windows Users
- * Because this repo reuses the same shared files over and over again for each example project, symlinks are used to avoid duplication in the repo and allow for files to be copied around where needed in projects. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow for unix symlinks to be properly handled. 
- * Or, you can simply copy/paste the files, replacing the symlinks where needed, since you'll probably end up doing that anyway when it comes time to start your next extension project.
+ * Because this repo reuses the same shared files for each example project, symlinks are used to avoid duplication. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow unix symlinks.
+ * Alternatively, you can copy/paste the files from the shared folder to a sample extension, replacing the symlinks where needed.
  
 ### Quick Start
 
