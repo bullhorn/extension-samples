@@ -15,24 +15,24 @@
     </div>
     <div *ngIf="!errorMessage" class="card-content">
       <div class="doughnut-chart-container">
-        <app-doughnut-chart [probability]="probabilityToClose" description="Potential"></app-doughnut-chart>
+        <app-doughnut-chart [probability]="score" description="Score"></app-doughnut-chart>
       </div>
       <div class="details-button-container">
         <button (click)="toggleDetails()" *ngIf="!this.showDetails"
-                icon="expand" theme="secondary">Why This Potential?
+                icon="expand" theme="secondary">Why This Score?
         </button>
         <button (click)="toggleDetails()" *ngIf="this.showDetails"
-                icon="collapse" theme="secondary">Why This Potential?
+                icon="collapse" theme="secondary">Why This Score?
         </button>
       </div>
       <div *ngIf="showDetails" class="details">
         <div class="numbers-container">
           <div *ngIf="useStartDate" class="days-until-start number">
-            <div class="value {{probabilityScore}}">{{daysUntilStartDate | number: '1.0-0' }}</div>
+            <div class="value {{scoreCategory}}">{{daysUntilStartDate | number: '1.0-0' }}</div>
             <label>Days Until Start Date</label>
           </div>
           <div *ngIf="!useStartDate" class="days-open number">
-            <div class="value {{probabilityScore}}">{{daysOpen | number: '1.0-0' }}</div>
+            <div class="value {{scoreCategory}}">{{daysOpen | number: '1.0-0' }}</div>
             <label>Days Open</label>
           </div>
           <div class="average submission number">

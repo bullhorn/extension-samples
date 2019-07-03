@@ -21,8 +21,8 @@ export class RecordCardComponent implements OnInit {
   // Current job data
   currentJob: JobOrder;
   jobMeta: BullhornMeta;
-  jobFields: string[] = ['id', 'clientCorporation', 'title', 'dateAdded', 'startDate', 'dateClosed', 'numOpenings',
-    'address(state)', 'submissions[10](dateAdded)', 'placements[10](dateAdded)'];
+  jobFields: string[] = ['id', 'clientCorporation', 'title', 'dateAdded', 'startDate', 'dateClosed', 'numOpenings', 'clientBillRate',
+    'address(state)', 'submissions[10](dateAdded,jobOrder(id))', 'placements[10](dateAdded,jobOrder(id))'];
   creationDate: Date;
   startDate: Date;
   daysOpen: number;
@@ -36,8 +36,8 @@ export class RecordCardComponent implements OnInit {
   projectedFillDate: Date;
   daysSpent: number;
   daysRemaining: number;
-  probabilityToClose: number;
-  probabilityScore: ProbabilityScore = 'high';
+  score: number;
+  scoreCategory: ProbabilityScore = 'high';
 
   // Historic job data
   historicJobCategories: HistoricJobCategory[];
@@ -79,19 +79,6 @@ export class RecordCardComponent implements OnInit {
 
   toggleDetails() {
     this.showDetails = !this.showDetails;
-    this.update();
-  }
-
-  update(): void {
-    this.computeProbabilityScore();
-    setTimeout(() => {
-      if (this.doughnutChartComponent) {
-        this.doughnutChartComponent.update();
-      }
-      if (this.historicJobsComponent) {
-        this.historicJobsComponent.update();
-      }
-    }, 50);
   }
 
   private async onRegistered(isRegistered) {
@@ -207,8 +194,8 @@ export class RecordCardComponent implements OnInit {
       daysRemaining: this.daysRemaining,
       numOpenings: this.numOpenings,
     };
-    this.probabilityToClose = Util.computeProbabilityScore(input, this.averages).probabilityToClose;
-    this.probabilityScore = Util.getProbabilityScore(this.daysSpent, this.averages);
+    this.score = Util.computeProbabilityScore(input, this.averages).probabilityToClose;
+    this.scoreCategory = Util.getProbabilityScore(this.daysSpent, this.averages);
     this.printDebuggingInfo();
   }
 
@@ -231,7 +218,7 @@ export class RecordCardComponent implements OnInit {
       daysRemaining: this.daysRemaining,
       numOpenings: this.numOpenings,
       numSubmissions: this.numSubmissions,
-      placementPotential: Util.roundToPrecision(this.probabilityToClose, 3),
+      score: Util.roundToPrecision(this.score, 3),
     };
     if (this.daysUntilStartDate > 0) {
       calculationsTable.daysUntilStartDate = this.daysUntilStartDate;
