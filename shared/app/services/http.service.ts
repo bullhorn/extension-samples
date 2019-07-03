@@ -103,32 +103,36 @@ export class HttpService {
          sort: string = '-dateAdded'): Promise<any> {
     return new Promise((resolve, reject) => {
       this.appBridgeService.execute(async (appBridge: AppBridge) => {
-        const postData: any = { query, fields, meta, count: count || this.MAX_RECORDS_TO_RETURN, sort, start: 0 };
+        const postData: any = { query, fields, meta, count, sort, start: 0 };
         const searchEndpoint: string = EntityTypes.isSearchable(entityType.toString()) ? 'search' : 'query';
 
         const searchResponse: { data: SearchResponse, error: any } = await appBridge.httpPOST(`${searchEndpoint}/${entityType}`, postData);
         let onePull = searchResponse.data;
 
         // If the user provided a count that is small, don't make multiple calls
-        if (count > 20) {
-          while (this.shouldPullMoreRecords(onePull)) {
-            postData.start = onePull.data.length;
-            const nextSearchResponse: { data: SearchResponse, error: any } = await appBridge.httpPOST(
-              `${searchEndpoint}/${entityType}`, postData).catch(error => reject(error));
-            const nextPull = nextSearchResponse.data;
-            nextPull.data.push(...onePull.data);
-            onePull = nextPull;
-          }
+        while (this.shouldPullMoreRecords(onePull, count)) {
+          postData.start = onePull.data.length;
+          const nextSearchResponse: { data: SearchResponse, error: any } = await appBridge.httpPOST(
+            `${searchEndpoint}/${entityType}`, postData).catch(error => reject(error));
+          const nextPull = nextSearchResponse.data;
+          nextPull.data.push(...onePull.data);
+          onePull = nextPull;
         }
         HttpService.handleAppBridgeResponse(onePull, resolve, reject);
       });
     });
   }
 
-  private shouldPullMoreRecords(searchResponse: SearchResponse): boolean {
+  private shouldPullMoreRecords(searchResponse: SearchResponse, max: number): boolean {
     let total = searchResponse.total;
     let start = searchResponse.start;
     const count = searchResponse.count;
+    const maxTotal = Math.min(max, this.MAX_RECORDS_TO_RETURN);
+
+    // Don't pull more if we already have the maximum requested
+    if (total >= maxTotal) {
+      return false;
+    }
 
     // Handle missing values
     if (start == null) {
@@ -139,8 +143,8 @@ export class HttpService {
     }
 
     const nextStart = start + count;
-    const nextEnd = Math.min(nextStart + this.MAX_RECORDS_TO_RETURN, total);
-    if (nextStart < total && count !== 0 && nextStart < this.MAX_RECORDS_TO_RETURN) {
+    const nextEnd = Math.min(nextStart + maxTotal, total);
+    if (nextStart < total && count !== 0 && nextStart < maxTotal) {
       console.log(`--> Follow On Find(${nextStart} - ${nextEnd})`);
       return true;
     }
