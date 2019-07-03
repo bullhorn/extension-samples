@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 // Vendor
 import { NovoElementProviders, NovoElementsModule } from 'novo-elements';
 import { ChartsModule } from 'ng2-charts';
@@ -25,6 +26,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes),
     ChartsModule,
+    FormsModule,
     // Vendor
     NovoElementsModule,
     NovoElementProviders.forRoot(),
