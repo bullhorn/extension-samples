@@ -14,7 +14,7 @@
       <h3 class="details">{{errorDetails}}</h3>
     </div>
     <div *ngIf="!errorMessage" class="card-content">
-      <novo-tiles (onChange)="switchDataset()" [(ngModel)]="loadedDataSet" [options]="dataSetOptions"></novo-tiles>
+      <novo-tiles (onChange)="update()" [(ngModel)]="loadedDataSet" [options]="dataSetOptions"></novo-tiles>
       <div class="histogram-container">
         <app-histogram [category]="loadedDataSet"
                        [daysSpent]="daysSpent"
