@@ -48,19 +48,6 @@
         <ng-template novoTemplate="percentage" let-row let-col="col">
           <div class="percentage">{{row[col.id] * 100 | number:'1.1-1'}}%</div>
         </ng-template>
-        <!-- Job Description Expander -->
-        <ng-template novoTemplate="expandedRow" let-row>
-          <div class="job-details">
-            <div class="description">
-              <h3 class="label">{{publicDescriptionLabel}}</h3>
-              <app-html-cell [value]="row.publicDescription"></app-html-cell>
-            </div>
-            <div class="processed">
-              <h3 class="label">{{row.processedTitle}}</h3>
-              <app-html-cell [value]="row.processedDescription"></app-html-cell>
-            </div>
-          </div>
-        </ng-template>
       </novo-data-table>
     </div>
   </section>

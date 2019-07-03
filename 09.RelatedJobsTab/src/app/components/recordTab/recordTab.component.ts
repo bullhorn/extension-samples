@@ -19,21 +19,23 @@ export class RecordTabComponent implements OnInit {
   connected = true;
   errorMessage: string;
   errorDetails: string;
+  isNovoEnabled = false;
+
   currentJob: JobOrder;
   jobMeta: BullhornMeta;
   jobs: any[];
-  columns: IDataTableColumn<any>[];
-  displayColumns: string[] = ['expand', 'title', 'score', 'candidate', 'status'];
   jobFields: string[] = ['id', 'title', 'publicDescription', 'address(state)', 'isDeleted', 'status', 'submissions[1](dateAdded,candidate)'];
+
+  columns: IDataTableColumn<any>[];
+  displayColumns: string[] = ['title', 'score', 'candidate', 'status'];
   defaultSort = { id: 'score', value: 'desc' };
-  isNovoEnabled = false;
-  publicDescriptionLabel = 'Public Description';
   paginationOptions: IDataTablePaginationOptions = {
     theme: 'standard',
     page: 0,
     pageSize: 25,
     pageSizeOptions: [25, 50, 100, 250, 500],
   };
+
   private readonly corpId: number;
   private readonly privateLabelId: number;
   private readonly userId: number;
@@ -90,7 +92,7 @@ export class RecordTabComponent implements OnInit {
   private getRelatedJobs() {
     const notDeleted = `isDeleted:false`;
     const regionalSearch = `address.state:${this.currentJob.address.state} AND ${notDeleted}`;
-    this.httpService.search(EntityTypes.JobOrder, regionalSearch, this.jobFields.join(), 'basic', 100).then((response: any) => {
+    this.httpService.search(EntityTypes.JobOrder, regionalSearch, this.jobFields.join(), 'basic', 50).then((response: any) => {
       this.postProcessJobData(response.data);
       this.buildColumns();
       this.loading = false;
@@ -108,7 +110,7 @@ export class RecordTabComponent implements OnInit {
     });
 
     this.jobs.forEach(job => {
-      // Add model score and processed title/description to the job data
+      // Add a random score value
       job.score = Math.random();
 
       // Pull the most recent submission's candidate from the submission array up into the candidate's data
