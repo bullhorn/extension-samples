@@ -1,5 +1,5 @@
 // Angular
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // Vendor
 import { IDataTableColumn, IDataTablePaginationOptions } from 'novo-elements';
@@ -15,7 +15,6 @@ import { Util } from '../../util/util';
   styleUrls: ['./recordTab.component.scss'],
 })
 export class RecordTabComponent implements OnInit {
-  @ViewChildren('table') tables: QueryList<any>;
   loading = true;
   connected = true;
   errorMessage: string;
@@ -25,7 +24,7 @@ export class RecordTabComponent implements OnInit {
   jobs: any[];
   columns: IDataTableColumn<any>[];
   displayColumns: string[] = ['expand', 'title', 'score', 'candidate', 'status'];
-  jobFields: string[] = ['id', 'title', 'publicDescription', 'isDeleted', 'status', 'submissions[1](dateAdded,candidate)'];
+  jobFields: string[] = ['id', 'title', 'publicDescription', 'address(state)', 'isDeleted', 'status', 'submissions[1](dateAdded,candidate)'];
   defaultSort = { id: 'score', value: 'desc' };
   isNovoEnabled = false;
   publicDescriptionLabel = 'Public Description';
@@ -52,8 +51,78 @@ export class RecordTabComponent implements OnInit {
     Util.setHtmlExtensionClass('custom-tab');
   }
 
-  private static buildColumns(meta: BullhornMeta): IDataTableColumn<any>[] {
-    const columns: IDataTableColumn<any>[] = [{
+  ngOnInit(): void {
+    if (this.connected) {
+      this.appBridgeService.onRegistered.subscribe(this.onRegistered.bind(this));
+      this.appBridgeService.register();
+    }
+  }
+
+  private async onRegistered(isRegistered) {
+    if (isRegistered) {
+      this.connected = true;
+      this.getCurrentAndRelatedJobs();
+      this.isNovoEnabled = await this.appBridgeService.isNovoEnabled();
+      if (this.isNovoEnabled) {
+        document.body.className = 'zoom-out';
+      }
+    } else {
+      this.connected = false;
+      this.loading = false;
+    }
+  }
+
+  /**
+   * Gets details about related jobs for displaying in the list.
+   */
+  private getCurrentAndRelatedJobs() {
+    this.httpService.getEntity(EntityTypes.JobOrder, this.entityId, this.jobFields.join(), 'basic').then(async (response: any) => {
+      const jobOrderResponse: JobOrderResponse = response;
+      this.currentJob = jobOrderResponse.data;
+      this.jobMeta = jobOrderResponse.meta;
+      this.getRelatedJobs();
+    }).catch(this.handleError.bind(this));
+  }
+
+  /**
+   * Get related jobs (here in this example, that means jobs in the same state as the current one)
+   */
+  private getRelatedJobs() {
+    const notDeleted = `isDeleted:false`;
+    const regionalSearch = `address.state:${this.currentJob.address.state} AND ${notDeleted}`;
+    this.httpService.search(EntityTypes.JobOrder, regionalSearch, this.jobFields.join(), 'basic', 100).then((response: any) => {
+      this.postProcessJobData(response.data);
+      this.buildColumns();
+      this.loading = false;
+    }).catch(this.handleError.bind(this));
+  }
+
+  private postProcessJobData(jobs: JobOrder[]): void {
+    this.jobs = jobs;
+    this.jobs = this.jobs.filter((job) => {
+      if (job.isDeleted || job.status === 'Archive') {
+        // tslint:disable-next-line:no-console
+        console.debug('Filtered out Job:', job.title, 'isDeleted:', job.isDeleted, 'status:', job.status);
+      }
+      return !job.isDeleted && job.status !== 'Archive';
+    });
+
+    this.jobs.forEach(job => {
+      // Add model score and processed title/description to the job data
+      job.score = Math.random();
+
+      // Pull the most recent submission's candidate from the submission array up into the candidate's data
+      if (job.submissions && job.submissions.data && job.submissions.data.length > 0) {
+        job.candidate = job.submissions.data[0].candidate;
+      }
+    });
+
+    // Must match `this.defaultSort` - jobs by score descending.
+    this.jobs.sort((a, b) => b.score - a.score);
+  }
+
+  private buildColumns() {
+    this.columns = [{
       id: 'id',
       type: 'number',
     }, {
@@ -79,81 +148,12 @@ export class RecordTabComponent implements OnInit {
       template: 'candidate',
       width: 260,
     }];
-    columns.forEach(column => {
-      const columnMeta: any = meta.fields.find((item) => item.name === column.id);
+    this.columns.forEach(column => {
+      const columnMeta: any = this.jobMeta.fields.find((item) => item.name === column.id);
       column.label = columnMeta ? columnMeta.label : column.label;
       column.filterable = true;
       column.sortable = true;
     });
-    return columns;
-  }
-
-  ngOnInit(): void {
-    if (this.connected) {
-      this.appBridgeService.onRegistered.subscribe(this.onRegistered.bind(this));
-      this.appBridgeService.register();
-    }
-  }
-
-  private async onRegistered(isRegistered) {
-    if (isRegistered) {
-      this.connected = true;
-      this.getRelatedJobs();
-      this.isNovoEnabled = await this.appBridgeService.isNovoEnabled();
-      if (this.isNovoEnabled) {
-        document.body.className = 'zoom-out';
-      }
-    } else {
-      this.connected = false;
-      this.loading = false;
-    }
-  }
-
-  /**
-   * Gets details about the current job order.
-   */
-  private getCurrentJobData() {
-    this.httpService.getEntity(EntityTypes.JobOrder, this.entityId, this.jobFields.join(), 'basic').then((response: any) => {
-      const jobOrderResponse: JobOrderResponse = response;
-      this.currentJob = jobOrderResponse.data;
-      this.jobMeta = jobOrderResponse.meta;
-      this.getRelatedJobs();
-    }).catch(this.handleError.bind(this));
-  }
-
-  /**
-   * Get related jobs (here in this example, that means jobs in the same state as the current one)
-   */
-  private async getRelatedJobs() {
-    const notDeleted = `isDeleted:false`;
-    const regionalSearch = `address.state:${this.currentJob.address.state} AND ${notDeleted}`;
-    this.httpService.search(EntityTypes.JobOrder, regionalSearch, this.jobFields.join(), 'basic', 100).then((response: any) => {
-      this.postProcessJobData(response.data);
-    });
-  }
-
-  private postProcessJobData(jobs: JobOrder[]): void {
-    this.jobs = jobs;
-    this.jobs = this.jobs.filter((job) => {
-      if (job.isDeleted || job.status === 'Archive') {
-        // tslint:disable-next-line:no-console
-        console.debug('Filtered out Job:', job.title, 'isDeleted:', job.isDeleted, 'status:', job.status);
-      }
-      return !job.isDeleted && job.status !== 'Archive';
-    });
-
-    this.jobs.forEach(job => {
-      // Add model score and processed title/description to the job data
-      job.score = Math.random();
-
-      // Pull the most recent submission's candidate from the submission array up into the candidate's data
-      if (job.submissions && job.submissions.data && job.submissions.data.length > 0) {
-        job.candidate = job.submissions.data[0].candidate;
-      }
-    });
-
-    // Must match `this.defaultSort` - jobs by score descending.
-    this.jobs.sort((a, b) => b.score - a.score);
   }
 
   private handleError(err: Error) {
