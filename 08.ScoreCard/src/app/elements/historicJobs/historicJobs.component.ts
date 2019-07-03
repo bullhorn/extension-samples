@@ -35,9 +35,6 @@ export class HistoricJobsComponent implements OnInit {
   ngOnInit(): any {
     this.loadDataset(this.loadedDataSet);
     this.buildColumns();
-  }
-
-  update() {
     this.ref.detectChanges();
   }
 
@@ -47,7 +44,6 @@ export class HistoricJobsComponent implements OnInit {
       // Must match `this.defaultSort` - jobs by date descending.
       this.rows.sort((a, b) => b.dateAdded - a.dateAdded);
     }
-    this.ref.detectChanges();
   }
 
   private buildColumns(): void {
