@@ -1,0 +1,108 @@
+@import '~novo-elements/novo-elements.scss';
+@import '../../../styles.scss';
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $grey;
+  margin: 2rem;
+
+  i {
+    font-size: 4rem;
+    margin: 1rem;
+  }
+
+  .details {
+    text-align: center;
+  }
+}
+
+.custom-card {
+  height: 100%;
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 10rem;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+
+    .doughnut-chart-container {
+      margin: 1rem;
+    }
+
+    .details-button-container {
+      margin-top: 2rem;
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+
+      .numbers-container {
+        display: flex;
+        justify-content: space-around;
+        padding: 0.5rem;
+        margin-top: 2rem;
+
+        .number {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-left: 2rem;
+          margin-right: 2rem;
+        }
+
+        .value {
+          font-size: 2rem;
+          padding: 0.25rem;
+        }
+
+        label {
+          text-transform: uppercase;
+          color: grey;
+          font-weight: 500;
+          font-size: 0.9rem;
+          user-select: none;
+        }
+
+        .submission .value {
+          color: $submission;
+        }
+
+        .placement .value {
+          color: $placement;
+        }
+      }
+
+      .historic-jobs-container {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .high {
+    color: $grass;
+  }
+
+  .medium {
+    color: $sunflower;
+  }
+
+  .low {
+    color: $grapefruit;
+  }
+}

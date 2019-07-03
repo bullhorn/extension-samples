@@ -1,0 +1,20 @@
+<div class="historic-jobs">
+  <div class="jobs-container">
+    <novo-tiles (onChange)="loadDataset($event)" [(ngModel)]="loadedDataSet" [options]="dataSetOptions"></novo-tiles>
+    <novo-data-table [columns]="columns"
+                     [defaultSort]="defaultSort"
+                     [displayedColumns]="displayColumns"
+                     [paginationOptions]="paginationOptions"
+                     [rows]="rows">
+      <!-- Job Order Cell -->
+      <ng-template let-col="col" let-row novoTemplate="jobOrder">
+        <app-entity-cell [entityId]="row.id" [label]="row[col.id]" [showPreview]="isNovoEnabled"
+                         entityType="JobOrder"></app-entity-cell>
+      </ng-template>
+      <!-- Timestamp Cell -->
+      <ng-template let-col="col" let-row novoTemplate="timestamp">
+        {{ row[col.id] | date: 'MMM dd, yyyy' }}
+      </ng-template>
+    </novo-data-table>
+  </div>
+</div>
