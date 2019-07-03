@@ -8,6 +8,6 @@ export { ErrorModalModule } from './errorModal/errorModal.module';
 export { ErrorModalComponent } from './errorModal/errorModal.component';
 export { HistogramComponent } from './histogram/histogram.component';
 export { HistoricJobsComponent } from './historicJobs/historicJobs.component';
-export { HtmlCellModule } from './htmlCell/htmlCell.module';
-export { HtmlCellComponent } from './htmlCell/htmlCell.component';
+export { HtmlCellModule } from '../../../../shared/app/elements/htmlCell/htmlCell.module';
+export { HtmlCellComponent } from '../../../../shared/app/elements/htmlCell/htmlCell.component';
 export { ScatterPlotComponent } from './scatterPlot/scatterPlot.component';
