@@ -99,6 +99,10 @@ export class RecordTabComponent implements OnInit {
     }
   }
 
+  async cancel() {
+    console.log('I am here in the cancel() method!');
+  }
+
   private showAllFields(): any {
     this.hasErrors = false;
     this.fieldSets.forEach((fieldSet) => {
