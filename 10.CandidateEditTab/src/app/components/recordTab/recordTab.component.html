@@ -1,0 +1,42 @@
+<div *ngIf="!connected" class="error-container">
+  <i class="bhi-inactive"></i>
+  <h2 class="details">Cannot connect to Bullhorn.</h2>
+  <h3 class="details">This app can only be run inside of Bullhorn as a Custom Tab. Please contact your admin if this is in error.</h3>
+</div>
+<div *ngIf="connected" class="custom-tab">
+  <div *ngIf="loading" class="loading-container">
+    <novo-loading></novo-loading>
+  </div>
+  <div *ngIf="errorMessage" class="error-container">
+    <i class="bhi-caution"></i>
+    <h2 class="details">{{errorMessage}}</h2>
+    <h3 class="details">{{errorDetails}}</h3>
+  </div>
+  <div *ngIf="form" class="content">
+    <div class="content-container">
+      <div class="subheader">
+        <div class="entity-link">
+          <label>Job</label>
+          <app-entity-cell entityType="JobOrder" [entityId]="jobOrder?.id" [label]="jobOrder?.title"
+                           [showPreview]="isNovoEnabled"></app-entity-cell>
+        </div>
+        <div class="entity-link">
+          <label>Candidate</label>
+          <app-entity-cell entityType="Candidate" [entityId]="candidate?.id" [label]="candidate?.name"
+                           [showPreview]="isNovoEnabled"></app-entity-cell>
+        </div>
+      </div>
+      <button class="show-fields" theme="dialogue" color="ocean" icon="arrow-left" side="left"
+              *ngIf="hasErrors" (click)="showAllFields()">Show All Fields</button>
+      <div class="form-container">
+        <novo-dynamic-form [fieldsets]="fieldSets" [(form)]="form"></novo-dynamic-form>
+      </div>
+      <footer>
+        <button theme="standard" (click)="close()">Cancel</button>
+        <button theme="primary" color="action" icon="check" (click)="save()"
+                [class.valid-form]="form.valid" [class.invalid-form]="!form.valid"
+                [loading]="saving">Save</button>
+      </footer>
+    </div>
+  </div>
+</div>
