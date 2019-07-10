@@ -14,6 +14,7 @@ import { RecordTabComponent } from './components/recordTab/recordTab.component';
 import { CreateModalComponent } from './elements/createModal/createModal.component';
 import { ErrorModalComponent } from './elements/errorModal/errorModal.component';
 import { ExtensionOptionsService } from './services/extensionOptions.service';
+import { EntityCellComponent } from './elements/entityCell/entityCell.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'record-tab', pathMatch: 'full' },
@@ -42,6 +43,7 @@ export function optionsFactory(httpService: HttpService): any {
     RecordTabComponent,
     CreateModalComponent,
     ErrorModalComponent,
+    EntityCellComponent,
   ],
   providers: [
     AppBridgeService,
