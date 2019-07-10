@@ -307,6 +307,8 @@ export class ListActionComponent implements OnInit {
   /**
    * Performs the search needed for getting all of the Placement data and meta
    */
+
+  // TODO: This is really old code here - get this all cleaned up
   private placementSearch(): Promise<any> {
     return new Promise((resolve) => {
       const postData: any = {
