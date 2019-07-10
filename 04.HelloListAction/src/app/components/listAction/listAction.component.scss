@@ -1,0 +1,64 @@
+@import '~novo-elements/novo-elements.scss';
+@import '../../../styles.scss';
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $grey;
+  margin: 2rem;
+
+  i {
+    font-size: 4rem;
+    margin: 1rem;
+  }
+
+  .details {
+    text-align: center;
+  }
+}
+
+.custom-action {
+  padding: 20px;
+  height: 100%;
+  background-color: $background-dark;
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 10rem;
+  }
+
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $grey;
+    min-height: 30em;
+
+    .detail {
+      margin: 0.2em;
+      display: flex;
+      align-items: center;
+      width: 40em;
+
+      label {
+        width: 50%;
+        text-transform: uppercase;
+        color: grey;
+        font-weight: 500;
+        font-size: 0.9em;
+        user-select: none;
+        margin-right: 1em;
+      }
+
+      .value {
+        width: 50%;
+        max-width: 30em;
+        word-break: break-word;
+        color: $black;
+      }
+    }
+  }
+}
+
