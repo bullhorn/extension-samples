@@ -1,4 +1,4 @@
-<header icon="rocket" theme="company" title="Example Record Action">
+<header icon="rocket" theme="company" title="Hello Record Action!">
   <utils *ngIf="connected">
     <util-action icon="times" (click)="close()"></util-action>
   </utils>
@@ -13,7 +13,7 @@
     <novo-loading></novo-loading>
   </div>
   <div *ngIf="!loading" class="details-container">
-    <h3>Details provided to this custom action:</h3>
+    <h3>Here is what was passed to me:</h3>
     <div class="detail">
       <label>Entity Type</label>
       <div class="value">{{entityType}}</div>
