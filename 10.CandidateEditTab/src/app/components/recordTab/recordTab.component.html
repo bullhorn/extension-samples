@@ -14,24 +14,13 @@
   </div>
   <div *ngIf="form" class="content">
     <div class="content-container">
-      <div class="subheader">
-        <div class="entity-link">
-          <label>Job</label>
-          <app-entity-cell entityType="JobOrder" [entityId]="jobOrder?.id" [label]="jobOrder?.title"
-                           [showPreview]="isNovoEnabled"></app-entity-cell>
-        </div>
-        <div class="entity-link">
-          <label>Candidate</label>
-          <app-entity-cell entityType="Candidate" [entityId]="candidate?.id" [label]="candidate?.name"
-                           [showPreview]="isNovoEnabled"></app-entity-cell>
-        </div>
-      </div>
       <button class="show-fields" theme="dialogue" color="ocean" icon="arrow-left" side="left"
               *ngIf="hasErrors" (click)="showAllFields()">Show All Fields</button>
       <div class="form-container">
         <novo-dynamic-form [fieldsets]="fieldSets" [(form)]="form"></novo-dynamic-form>
       </div>
       <footer>
+        <button theme="warning" (click)="showExampleErrorModal()">Show Example Error Modal</button>
         <button theme="standard" (click)="cancel()">Cancel</button>
         <button theme="primary" color="action" icon="check" (click)="save()"
                 [class.valid-form]="form.valid" [class.invalid-form]="!form.valid"

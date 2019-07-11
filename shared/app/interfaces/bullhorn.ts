@@ -4,7 +4,7 @@ import { Candidate, EntityTypes, JobOrder } from '@bullhorn/bullhorn-types';
  * Useful Bullhorn API types for use in extensions
  */
 export interface CandidateResponse {
-  data: Candidate[];
+  data: Candidate;
   meta: BullhornMeta;
 }
 
