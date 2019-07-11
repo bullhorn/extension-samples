@@ -13,6 +13,11 @@
     <h3 class="details">{{errorDetails}}</h3>
   </div>
   <div *ngIf="form" class="content">
+    <div class="description">
+      <h2 class="details">Example Edit Like Tab</h2>
+      <h3 class="details">This tab is an example of what can be done when App Bridge is used to read and write data in a Bullhorn record,
+        and Novo Elements is used to display that data in a form, along with supporting toasts, required fields and modal dialogs.</h3>
+    </div>
     <div class="content-container">
       <button class="show-fields" theme="dialogue" color="ocean" icon="arrow-left" side="left"
               *ngIf="hasErrors" (click)="showAllFields()">Show All Fields</button>
@@ -20,7 +25,7 @@
         <novo-dynamic-form [fieldsets]="fieldSets" [(form)]="form"></novo-dynamic-form>
       </div>
       <footer>
-        <button theme="warning" (click)="showExampleErrorModal()">Show Example Error Modal</button>
+        <button theme="standard" color="warning" (click)="showExampleErrorModal()">Show Example Error Modal</button>
         <button theme="standard" (click)="cancel()">Cancel</button>
         <button theme="primary" color="action" icon="check" (click)="save()"
                 [class.valid-form]="form.valid" [class.invalid-form]="!form.valid"
