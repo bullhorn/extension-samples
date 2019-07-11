@@ -1,26 +1,9 @@
 # Bullhorn Extension Samples
+
 Bullhorn offers several ways to customize the recruiter experience with code using custom tabs, custom cards, custom record actions, custom list actions, and more. In this repo are several examples to get you started building custom extensions fast using [Novo Elements](https://github.com/bullhorn/novo-elements).
 
-### Prerequisites
- * [NodeJS](https://nodejs.org/en/) - version 10
-
- * Host File Hack (One Time Only)
- 
-     In order to dev test the custom action that is running locally from within Bullhorn 
-     (which is running at https://bullhornstaffing.com) we must run a local server with https
-     and match the domain. 
-
-     Add the following line to your host file:
-
-     ```
-     127.0.0.1    localhost    local.bullhornstaffing.com
-     ```
-
-#### For Windows Users
- * Because this repo reuses the same shared files for each example project, symlinks are used to avoid duplication. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow unix symlinks.
- * Alternatively, you can copy/paste the files from the shared folder to a sample extension, replacing the symlinks where needed.
- 
 ### The Samples
+
 | Sample Name        | Description                                                                    | Readme     |
 |--------------------|--------------------------------------------------------------------------------|------------|
 |1.HelloCard         | The hello world of custom cards that shows the data passed from Bullhorn.      | [View][#1]
@@ -45,44 +28,89 @@ Bullhorn offers several ways to customize the recruiter experience with code usi
 [#9]:09.RelatedJobsTab
 [#10]:10.CandidateEditTab
 
-### Adding to Bullhorn
-
-Each project's `README.md` file has steps for integrating the custom app into Bullhorn. Adding your app to Bullhorn is easy. After logging into Bullhorn, from the menu, navigate to **Admin** then **View Layout**. ![image alt text](doc_files/image_2.png)
-
-Inside View Layout, select the entity on which you would like your custom card (tab, page, etc.) to display. Select the **Custom Card** tab, and click **Add New** to create a new custom card. After you have input the information for your custom card, click save. 
-
-![image alt text](doc_files/image_3.png)
-
-Navigate to the entity where you added your custom card to see it live!
-
-![image alt text](doc_files/image_4.png)
-
-
-
-
-## Google Cloud Deployment
-
-All samples come with convenient scripts ready to deploy to Google Firebase hosting. This makes it very easy to deploy your code with a single command, and to take advantage of Firestore for your cloud database as you build out your app.
-
 ### Prerequisites
 
-* Google Cloud Account
+ * [NodeJS](https://nodejs.org/en/) - version 10
 
-    [https://cloud.google.com/free-trial/](https://cloud.google.com/free-trial/)
+ * Host File Hack (One Time Only)
+ 
+     In order to dev test the custom action that is running locally from within Bullhorn 
+     (which is running at https://bullhornstaffing.com) we must run a local server with https
+     and match the domain. 
 
-* Google Cloud SDK.
+     Add the following line to your host file:
 
-    [https://cloud.google.com/sdk/docs/#install_the_latest_cloud_tools_version_cloudsdk_current_version ](https://cloud.google.com/sdk/docs/#install_the_latest_cloud_tools_version_cloudsdk_current_version)
+     ```
+     127.0.0.1    localhost    local.bullhornstaffing.com
+     ```
 
-### Creating your project
+#### For Windows Users
 
-From within google cloud go to **Create Project**.
+ * Because this repo reuses the same shared files for each example project, symlinks are used to avoid duplication. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow unix symlinks.
+ * Alternatively, you can copy/paste the files from the shared folder to a sample extension, replacing the symlinks where needed.
+ 
+### Testing Extensions Locally
 
-![image alt text](doc_files/image_1.png)
+Each extension can be locally served for development testing.
 
-### Connect your GCloud SDK to the cluster
+Since we are matching the secure `https://` protocol of http://bullhornstaffing.com, we need to allow Chrome to open our app.
 
-Once you create your project, you need to set up your GCloud SDK with your project info.
+In a new browser card, navigate to `https://local.bullhornstaffing.com:4201` and when the page 
+"Your connection is not private" is displayed, click the "Advanced" button. 
 
-`gcloud init`
+![Chrome Privacy Warning](doc_files/privacy.png)
 
+On the advanced page, click "Proceed to local.bullhornstaffing.com" to allow the browser to open the app.
+
+![Chrome Advanced Page](doc_files/advanced.png)
+
+You can now view your locally running custom extension from within Bullhorn. In a window outside of a Bullhorn extension,
+you should see a screen that looks like this, since we check to see if Bullhorn has passed in query parameters to the extension.
+
+![Cannot Connect Extension App Screen](doc_files/connect.png)
+
+#### Add to Bullhorn for Development Testing
+
+To integrate the custom card on any record, login to www.bullhornstaffing.com as an admin user 
+and go to Main Menu -> View Layout.
+
+For non Novo enabled users, it looks like this:
+
+![S-Release View Layout](doc_files/view-layout-s.png)
+
+For Novo enabled users, it looks like this:
+
+![Novo View Layout](doc_files/view-layout-novo.png)
+
+On the View Layout screen, select your entity of choice, then select your custom extension type of choice
+and click the Add New button. 
+
+Here is what it looks like for Custom Cards:
+
+![Add a New Custom Card](doc_files/custom-card-add-button.png)
+
+Here is what it looks like for Custom Tabs:
+
+![Add a New Custom Card](doc_files/custom-tab-add-button.png)
+
+Select "Add New" and fill in the following details:
+
+**Title:** Custom Card Dev
+
+**URL:** https://local.bullhornstaffing.com:4201
+
+**User Types:** (Novo Only) Include all user types that should have access to this card.
+
+![Fill Out Custom Card](doc_files/custom-card.png)
+
+_For Custom Tabs Only: you may need to create an individual custom tab for each track (ex: Job 1 - Job V) 
+in order to get the custom tab to show up on different entity tracks._
+
+#### Building and deploying to cloud hosting
+
+If using firebase, then the `package.json` deploy script is a handy way to build and deploy to firebase hosting in a single step. 
+In order to do this, firebase hosting must first be setup for this project, by [Creating A Firebase Project](https://firebase.google.com).
+
+```npm
+npm run deploy
+```
