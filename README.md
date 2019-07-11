@@ -4,6 +4,18 @@ Bullhorn offers several ways to customize the recruiter experience with code usi
 ### Prerequisites
  * [NodeJS](https://nodejs.org/en/) - version 10
 
+ * Host File Hack (One Time Only)
+ 
+     In order to dev test the custom action that is running locally from within Bullhorn 
+     (which is running at https://bullhornstaffing.com) we must run a local server with https
+     and match the domain. 
+
+     Add the following line to your host file:
+
+     ```
+     127.0.0.1    localhost    local.bullhornstaffing.com
+     ```
+
 #### For Windows Users
  * Because this repo reuses the same shared files for each example project, symlinks are used to avoid duplication. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow unix symlinks.
  * Alternatively, you can copy/paste the files from the shared folder to a sample extension, replacing the symlinks where needed.
