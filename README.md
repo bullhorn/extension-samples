@@ -2,8 +2,6 @@
 
 Bullhorn offers several ways to customize the recruiter experience with code using custom tabs, custom cards, custom record actions, custom list actions, and more. In this repo are several examples to get you started building custom extensions fast using [Novo Elements](https://github.com/bullhorn/novo-elements).
 
-### The Samples
-
 | Sample Name        | Description                                                                    | Readme     |
 |--------------------|--------------------------------------------------------------------------------|------------|
 |1.HelloCard         | The hello world of custom cards that shows the data passed from Bullhorn.      | [View][#1]
