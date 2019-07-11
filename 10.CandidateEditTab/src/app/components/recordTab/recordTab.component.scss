@@ -31,28 +31,6 @@
   .content-container {
     background: $white;
 
-    .subheader {
-      display: flex;
-      background: $off-white;
-      box-shadow: 0 5px 5px rgba(0,0,0,.19);
-
-      .entity-link {
-        display: flex;
-        flex-direction: column;
-        margin-right: 3rem;
-
-        label {
-          padding-top: .5rem;
-          padding-left: 3.5rem;
-          text-transform: uppercase;
-          color: $grey;
-          font-weight: 500;
-          font-size: 0.9rem;
-          user-select: none;
-        }
-      }
-    }
-
     .show-fields {
       margin-left: 1rem;
       margin-top: 1rem;
