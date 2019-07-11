@@ -64,7 +64,7 @@ export class RecordTabComponent implements OnInit {
   save() {
     this.saving = true;
     const successToast: any = {
-      message: 'This is a successful toast! The window is closing now...',
+      message: 'This is a successful toast! Your data changes have been made.',
       icon: 'check',
       theme: 'success',
       position: 'fixedTop',
