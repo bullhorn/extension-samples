@@ -26,7 +26,7 @@ Bullhorn offers several ways to customize the recruiter experience with code usi
 [#9]:09.RelatedJobsTab
 [#10]:10.CandidateEditTab
 
-### Prerequisites
+## Prerequisites
 
  * [NodeJS](https://nodejs.org/en/) - version 10
 
@@ -42,12 +42,12 @@ Bullhorn offers several ways to customize the recruiter experience with code usi
      127.0.0.1    localhost    local.bullhornstaffing.com
      ```
 
-#### For Windows Users
+### For Windows Users
 
  * Because this repo reuses the same shared files for each example project, symlinks are used to avoid duplication. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow unix symlinks.
  * Alternatively, you can copy/paste the files from the shared folder to a sample extension, replacing the symlinks where needed.
  
-### Testing Extensions Locally
+## Testing Extensions Locally
 
 Each extension can be locally served for development testing.
 
@@ -67,7 +67,7 @@ you should see a screen that looks like this, since we check to see if Bullhorn 
 
 ![Cannot Connect Extension App Screen](doc_files/connect.png)
 
-#### Add to Bullhorn for Development Testing
+## Add to Bullhorn for Development Testing
 
 To integrate the custom card on any record, login to www.bullhornstaffing.com as an admin user 
 and go to Main Menu -> View Layout.
@@ -108,7 +108,7 @@ Or for a Custom Tab:
 _For Custom Tabs Only: you may need to create an individual custom tab for each track (ex: Job 1 - Job V) 
 in order to get the custom tab to show up on different entity tracks._
 
-#### Building and deploying to cloud hosting
+## Building and deploying to cloud hosting
 
 If using firebase, then the `package.json` deploy script is a handy way to build and deploy to firebase hosting in a single step. 
 In order to do this, firebase hosting must first be setup for this project, by [Creating A Firebase Project](https://firebase.google.com).
