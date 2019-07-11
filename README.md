@@ -93,7 +93,7 @@ Here is what it looks like for Custom Tabs:
 
 ![Add a New Custom Card](doc_files/custom-tab-add-button.png)
 
-Select "Add New" and fill in the following details:
+Select "Add New" and fill in the following details for a Custom Card:
 
 **Title:** Custom Card Dev
 
@@ -102,6 +102,10 @@ Select "Add New" and fill in the following details:
 **User Types:** (Novo Only) Include all user types that should have access to this card.
 
 ![Fill Out Custom Card](doc_files/custom-card.png)
+
+Or for a Custom Tab:
+
+![Fill Out Custom Tab](doc_files/custom-tab.png)
 
 _For Custom Tabs Only: you may need to create an individual custom tab for each track (ex: Job 1 - Job V) 
 in order to get the custom tab to show up on different entity tracks._
