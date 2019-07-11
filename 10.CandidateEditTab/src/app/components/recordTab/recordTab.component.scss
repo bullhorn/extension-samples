@@ -20,7 +20,7 @@
 
 .custom-tab {
   height: 100%;
-  background-color: $background-dark;
+  background-color: $white;
 
   .loading-container {
     display: flex;
@@ -28,8 +28,12 @@
     padding: 10rem;
   }
 
+  .description {
+    text-align: center;
+    margin: 2rem;
+  }
+
   .content-container {
-    background: $white;
 
     .show-fields {
       margin-left: 1rem;
