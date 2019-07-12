@@ -2,6 +2,8 @@
 
 The hello world of custom cards that shows the data passed from Bullhorn.
 
+![Screenshot](../doc_files/hello-card.png)
+
 #### Prerequisites
 
  * [Host File Hack](../README.md#prerequisites) (One Time Only)
@@ -12,21 +14,16 @@ The hello world of custom cards that shows the data passed from Bullhorn.
 npm install
 ```
 
-#### Start the App Locally
+#### Run the App
 
-Start the auto-refreshing server that can be tested within Bullhorn as a custom card at `https://local.bullhornstaffing.com:4201/`:
+ *  Serve the app at `https://local.bullhornstaffing.com:4201/`:
 
-```npm
-npm start
-```
+    ```npm
+    npm start
+    ```
 
-#### Integrate into Bullhorn
+ * Follow the steps for [Viewing the App Locally](../README.md#viewing-the-app).
 
-Follow the steps in the main README file for adding to bullhorn
+ * Follow the steps for [Adding the Extension to Bullhorn](../README.md#adding-to-bullhorn).
 
-#### View the App
-
-Follow the steps in the main README file for viewing the app.
-
-#### Build and deploy to cloud hosting
-
+ * Open a record in Bullhorn and view your custom extension.

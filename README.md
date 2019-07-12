@@ -46,8 +46,8 @@ Bullhorn offers several ways to customize the recruiter experience with code usi
 
  * Because this repo reuses the same shared files for each example project, symlinks are used to avoid duplication. See [this guide](https://www.joshkel.com/2018/01/18/symlinks-in-windows/) for configuring your windows machine to allow unix symlinks.
  * Alternatively, you can copy/paste the files from the shared folder to a sample extension, replacing the symlinks where needed.
- 
-## Testing Extensions Locally
+
+## Viewing the App
 
 Each extension can be locally served for development testing.
 
@@ -67,7 +67,7 @@ you should see a screen that looks like this, since we check to see if Bullhorn 
 
 ![Cannot Connect Extension App Screen](doc_files/connect.png)
 
-## Add to Bullhorn for Development Testing
+## Adding to Bullhorn
 
 To integrate the custom card on any record, login to www.bullhornstaffing.com as an admin user 
 and go to Main Menu -> View Layout.
@@ -93,7 +93,7 @@ Here is what it looks like for Custom Tabs:
 
 Select "Add New" and fill in the following details for a Custom Card:
 
-**Title:** Custom Card Dev
+**Title:** Custom Card Dev (can be any name you like)
 
 **URL:** https://local.bullhornstaffing.com:4201
 
@@ -108,7 +108,7 @@ Or for a Custom Tab:
 _For Custom Tabs Only: you may need to create an individual custom tab for each track (ex: Job 1 - Job V) 
 in order to get the custom tab to show up on different entity tracks._
 
-## Building and deploying to cloud hosting
+## Deploying
 
 If using firebase, then the `package.json` deploy script is a handy way to build and deploy to firebase hosting in a single step. 
 In order to do this, firebase hosting must first be setup for this project, by [Creating A Firebase Project](https://firebase.google.com).
@@ -116,3 +116,9 @@ In order to do this, firebase hosting must first be setup for this project, by [
 ```npm
 npm run deploy
 ```
+
+## Enabling for Customers
+
+In order to enable customers to use your new extension, follow the same steps to add a 
+new custom extension for a customer's instance of Bullhorn, and change the URL to the
+location of the deployed web app. 
