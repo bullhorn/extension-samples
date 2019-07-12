@@ -108,6 +108,8 @@ Or for a Custom Tab:
 _For Custom Tabs Only: you may need to create an individual custom tab for each track (ex: Job 1 - Job V) 
 in order to get the custom tab to show up on different entity tracks._
 
+For more information on adding custom tabs and menu actions, [see the guide here](http://bullhorn.github.io/Custom-Tabs-and-Menu-Actions/).
+
 ## Deploying
 
 If using firebase, then the `package.json` deploy script is a handy way to build and deploy to firebase hosting in a single step. 
