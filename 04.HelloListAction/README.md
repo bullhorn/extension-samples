@@ -1,8 +1,8 @@
-## Hello Record Action
+## Hello List Action
 
-The hello world of custom record actions that shows the data passed from Bullhorn.
+The hello world of custom list actions that shows the data passed from Bullhorn.
 
-![Screenshot](../doc_files/hello-record-action.png)
+![Screenshot](../doc_files/hello-list-action.png)
 
 #### Prerequisites
 
@@ -26,5 +26,5 @@ npm install
 
  * Follow the steps for [Adding the Extension to Bullhorn](../README.md#adding-to-bullhorn).
 
- * Open a record in Bullhorn, select the Actions dropdown, then select _Your Custom Action_ 
-   and view your custom extension in a new Bullhorn tab.
+ * Open a list in Bullhorn, select one or more records, open the Selected dropdown, and
+   select _Your Custom Action_ and view your custom extension in a new Bullhorn tab.
