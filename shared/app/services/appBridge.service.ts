@@ -21,7 +21,7 @@ export class AppBridgeService {
   private readonly currentBullhornUrl: string;
 
   // Flag provided by the extension in the register method
-  private isCustomAction = false;
+  private requiresWindowObject = false;
 
   // Registration variables
   private registered = false;
@@ -84,8 +84,19 @@ export class AppBridgeService {
    * Bullhorn provides the 'currentBullhornUrl' parameter that specifies the url of the new iFrame window.
    */
   registerCustomAction(): void {
-    this.isCustomAction = true;
+    this.requiresWindowObject = true;
     this.appBridgeConfig.url = this.currentBullhornUrl.replace(/.*BullhornStaffing/g, '/BullhornStaffing');
+    this.register();
+  }
+
+  /**
+   * Register method for Custom Menu Items
+   *
+   * Since custom menu items create a new bowling alley tab, the app bridge service needs to connect
+   * to the new window in order to name it or close it.
+   */
+  registerCustomMenuItem(): void {
+    this.requiresWindowObject = true;
     this.register();
   }
 
@@ -100,7 +111,7 @@ export class AppBridgeService {
     this.bridge.register(this.appBridgeConfig).then((windowName: string) => {
       // Custom actions open inside of a new bowling alley tab, and we must register for the new window object
       // Keep retrying to register until we receive the full window registration. Otherwise, ignore it.
-      this.registered = !this.isCustomAction || windowName != null;
+      this.registered = !this.requiresWindowObject || windowName != null;
       if (this.registered) {
         this.onRegistered.emit(true);
       } else {

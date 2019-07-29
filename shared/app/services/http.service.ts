@@ -89,6 +89,23 @@ export class HttpService {
   }
 
   /**
+   * Returns an object that contains the requested settings as properties
+   *
+   * @param settings - comma separated list of settings to get from Bullhorn for the current user
+   */
+  getSettings(settings: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.appBridgeService.execute((appBridge: AppBridge) => {
+        appBridge.httpGET(`settings/${settings}`).then((response: any) => {
+          HttpService.handleAppBridgeResponse(response, resolve, reject);
+        }).catch((error: Error) => {
+          reject(error);
+        });
+      });
+    });
+  }
+
+  /**
    * Performs a bullhorn /search or /query call through the appBridge.
    *
    * If the entity is indexed using Lucene, then a /search call will be made. If non-indexed, then /query will be used.

@@ -129,3 +129,14 @@ export interface NovoFieldset {
   icon?: string;
   controls: any[];
 }
+
+// Response format when getting user related settings from Bullhorn
+export interface UserSettings {
+  userId: number;
+  privateLabelId: {
+    id: number;
+    name: string;
+  }
+  corporationId: number;
+  novoEnabled: boolean;
+}

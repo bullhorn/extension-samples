@@ -5,7 +5,8 @@
 //  - Custom Tabs and Custom Actions need 100% height because they are inside of a really long page.
 //  - Custom Cards do not need any height specified, they should shrink to the size of the contents.
 html.custom-tab,
-html.custom-action {
+html.custom-action,
+html.custom-menu-item {
   height: 100%;
 
   body, app-root {
