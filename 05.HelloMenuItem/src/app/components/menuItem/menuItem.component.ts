@@ -47,7 +47,7 @@ export class MenuItemComponent implements OnInit {
       this.privateLabelId = userSettings.privateLabelId.id;
       this.corpId = userSettings.corporationId;
       this.connected = !!this.userId && !!this.corpId && !!this.privateLabelId;
-      this.isNovoEnabled = await this.appBridgeService.isNovoEnabled();
+      this.isNovoEnabled = userSettings.novoEnabled;
       if (this.isNovoEnabled) {
         document.body.className = 'zoom-out';
       }

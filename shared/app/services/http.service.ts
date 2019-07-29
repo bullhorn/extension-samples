@@ -36,7 +36,7 @@ export class HttpService {
       reject(response);
     } else if (response.error) {
       reject(response.error);
-    } else if (response && response.data && response.data.data) {
+    } else if (response.data) {
       resolve(response.data);
     } else {
       resolve(response);
