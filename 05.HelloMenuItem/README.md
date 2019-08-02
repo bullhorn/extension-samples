@@ -24,6 +24,8 @@ npm install
 
  * Follow the steps for [Viewing the App Locally](../README.md#viewing-the-app).
 
- * Follow the steps for [Adding the Extension to Bullhorn](../README.md#adding-to-bullhorn).
-
- * Open the main menu in Bullhorn, find your menu item, and view your custom extension in a new Bullhorn tab.
+ * Custom menu items must be configured as a new menu item in Bullhorn Admin by support. 
+   For a dev test custom menu item, the url of the dev test page will be:  
+   https://local.bullhornstaffing.com:4201. Menu items are enabled per user type by support.
+ 
+ * Open the main menu in Bullhorn, select your menu item, and view your custom menu item extension.
