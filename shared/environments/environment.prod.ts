@@ -8,8 +8,8 @@ export const environment = {
    *  - color: Overwrites the color of the bowling alley tab for a custom action.
    */
   appBridgeConfig: {
-    url: 'https://bullhorn-extension.firebaseapp.com',
-    title: 'Custom Action',
+    url: 'https://my-bullhorn-extension.app.web',
+    title: 'Extension',
     color: 'neutral',
   },
 };
