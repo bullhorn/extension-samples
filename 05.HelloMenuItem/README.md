@@ -17,6 +17,9 @@ npm install
 #### Run the App
 
  *  Serve the app at `https://local.bullhornstaffing.com:4201/`:
+ 
+    > Ensure that in the file `app/environments/environment.ts`, the appBridgeConfig.url matches exactly
+      the URL where the app is served in order to allow the app to register with appBridge.
 
     ```npm
     npm start
