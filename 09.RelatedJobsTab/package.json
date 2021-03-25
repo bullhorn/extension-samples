@@ -11,7 +11,7 @@
     "deploy": "npm run build && firebase deploy --only hosting",
     "lint": "ng lint",
     "ng": "ng",
-    "start": "ng serve --port 4201 --disable-host-check --ssl true",
+    "start": "ng serve --port 4201 --disable-host-check true",
     "start-qa": "ng serve --port 4201 --disable-host-check"
   },
   "private": true,
@@ -40,7 +40,7 @@
     "date-fns": "1.30.1",
     "firebase": "6.2.1",
     "ng2-charts": "2.2.0",
-    "novo-elements": "^3.9.0",
+    "novo-elements": "github:bullhorn/novo-elements-snapshot#f/appBridgeTimeout",
     "post-robot": "8.0.30",
     "roboto-fontface": "0.10.0",
     "rxjs": "6.5.2",

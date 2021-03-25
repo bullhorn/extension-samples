@@ -90,10 +90,11 @@ export class RecordTabComponent implements OnInit {
    * Get related jobs (here in this example, that means jobs in the same state as the current one)
    */
   private getRelatedJobs() {
+    this.jobs = [];
     const notDeleted = `isDeleted:false`;
-    const regionalSearch = `address.state:${this.currentJob.address.state} AND ${notDeleted}`;
+    const regionalSearch = `${notDeleted}`;
     this.httpService.search(EntityTypes.JobOrder, regionalSearch, this.jobFields.join(), 'basic', 50).then((response: any) => {
-      this.postProcessJobData(response.data);
+      this.postProcessJobData(response);
       this.buildColumns();
       this.loading = false;
     }).catch(this.handleError.bind(this));

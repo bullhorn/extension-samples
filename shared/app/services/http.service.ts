@@ -123,14 +123,15 @@ export class HttpService {
         const postData: any = { query, fields, meta, count, sort, start: 0 };
         const searchEndpoint: string = EntityTypes.isSearchable(entityType.toString()) ? 'search' : 'query';
 
-        const searchResponse: { data: SearchResponse, error: any } = await appBridge.httpPOST(`${searchEndpoint}/${entityType}`, postData);
+        const searchResponse: { data: SearchResponse, error: any } = await appBridge.httpPOST(`${searchEndpoint}/${entityType}`, 
+        postData, 50000);
         let onePull = searchResponse.data;
 
         // If the user provided a count that is small, don't make multiple calls
         while (this.shouldPullMoreRecords(onePull, count)) {
           postData.start = onePull.data.length;
           const nextSearchResponse: { data: SearchResponse, error: any } = await appBridge.httpPOST(
-            `${searchEndpoint}/${entityType}`, postData).catch(error => reject(error));
+            `${searchEndpoint}/${entityType}`, postData, 50000).catch(error => reject(error));
           const nextPull = nextSearchResponse.data;
           nextPull.data.push(...onePull.data);
           onePull = nextPull;

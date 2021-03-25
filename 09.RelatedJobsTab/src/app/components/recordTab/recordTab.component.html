@@ -11,6 +11,7 @@
           <i class="bhi-job"></i>
           Related Jobs
           <span *ngIf="jobs">({{ jobs.length }})</span>
+          <button (click)="getRelatedJobs()">Refresh</button>
         </h1>
       </div>
     </header>

@@ -13,7 +13,7 @@ export const environment = {
    *  - color: Overwrites the color of the bowling alley tab for a custom action.
    */
   appBridgeConfig: {
-    url: 'https://local.bullhornstaffing.com:4201',
+    url: 'http://local.bullhornstaffing.com:4201',
     title: 'Extension Local',
     color: 'blue',
   },
