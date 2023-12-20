@@ -47,7 +47,9 @@
               "src/styles.scss",
               "node_modules/@bullhorn/bullhorn-icons/fonts/Bullhorn-Glyphicons.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/post-robot.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
