@@ -1,5 +1,5 @@
 // Vendor
-@import '~novo-elements/novo-elements.scss';
+@import "novo-elements";
 
 // The need for 100% height changes based on the type of extension:
 //  - Custom Tabs and Custom Actions need 100% height because they are inside of a really long page.

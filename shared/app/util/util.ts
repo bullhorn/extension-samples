@@ -1,4 +1,4 @@
-import * as harmonicMean from 'compute-hmean';
+import { harmonicMean } from 'compute-hmean';
 import {
   Averages, HistoricJob, HistoricJobCategory, ProbabilityScore, ProbabilityScoreInput, ProbabilityScoreOutput
 } from '../interfaces/examples';

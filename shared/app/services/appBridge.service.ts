@@ -3,7 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 // Vendor
-import { AppBridge } from 'novo-elements';
+import { AlleyLinkColors, AppBridge } from 'novo-elements';
 // App
 import { environment } from '../../environments/environment';
 
@@ -12,7 +12,7 @@ export class AppBridgeService {
   onRegistered: EventEmitter<boolean> = new EventEmitter();
 
   // AppBridgeConfig provided by the extension's environment file:
-  private appBridgeConfig = environment.appBridgeConfig;
+  private appBridgeConfig = environment.appBridgeConfig as Partial<{ title: string; url: string; color: AlleyLinkColors }>;
 
   // Production flag from extension's environment file
   private readonly waitTime: number = environment.production ? 500 : 2000;

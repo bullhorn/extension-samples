@@ -13,8 +13,8 @@ export const environment = {
    *  - color: Overwrites the color of the bowling alley tab for a custom action.
    */
   appBridgeConfig: {
-    url: 'https://local.bullhornstaffing.com:4201',
     title: 'Extension Local',
+    url: 'https://local.bullhornstaffing.com:4201',
     color: 'blue',
   },
 };
@@ -25,4 +25,4 @@ export const environment = {
  * below file. Don't forget to comment it out in production mode
  * because it will have a performance impact when errors are thrown
  */
-import 'zone.js/dist/zone-error'; // Included with Angular CLI.
+// import 'zone.js/dist/zone-error'; // Included with Angular CLI.
