@@ -4,10 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "extension": {
-      "root": "",
-      "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -22,6 +19,9 @@
         "@schematics/angular:guard": {
           "skipTests": true
         },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
         "@schematics/angular:module": {
           "skipTests": true
         },
@@ -32,23 +32,46 @@
           "skipTests": true
         }
       },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "preserveSymlinks": true,
+            "browser": "src/main.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [],
             "styles": [
               "src/styles.scss",
               "node_modules/@bullhorn/bullhorn-icons/fonts/Bullhorn-Glyphicons.css"
             ],
+            "allowedCommonJsDependencies": [
+              "@bullhorn/taurus",
+              "@bullhorn/dragula",
+              "brace/mode/javascript",
+              "angular2-text-mask",
+              "sha.js",
+              "date-fns",
+              "lodash",
+              "imask",
+              "text-mask-addons",
+              "timezone-support",
+              "resize-observer-polyfill"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/novo-elements",
+                "node_modules/novo-design-tokens"
+              ]
+            },
             "scripts": [],
-            "es5BrowserSupport": true
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {
@@ -61,52 +84,67 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "20mb",
                   "maximumError": "40mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "extension:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "extension:build:production"
+              "buildTarget": "extension:build:production"
+            },
+            "development": {
+              "buildTarget": "extension:build:development"
             }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201,
+            "host": "0.0.0.0",
+            "disableHostCheck": true,
+            "ssl": true
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "extension:build"
+            "buildTarget": "extension:build"
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "extension"
+  "cli": {
+    "analytics": false,
+    "schematicCollections": ["@angular-eslint/schematics"]
+  }
 }

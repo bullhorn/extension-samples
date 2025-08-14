@@ -10,6 +10,7 @@ import { Util } from '../../util/util';
   selector: 'app-record-card',
   templateUrl: './recordCard.component.html',
   styleUrls: ['./recordCard.component.scss'],
+  standalone: false
 })
 export class RecordCardComponent implements OnInit {
   loading = true;
